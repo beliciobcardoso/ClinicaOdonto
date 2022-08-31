@@ -7,4 +7,5 @@ public class Consulta {
 
     private Date dataConsulta;
     private Timestamp horaConsulta;
+    private Dentista dentista;
 }
