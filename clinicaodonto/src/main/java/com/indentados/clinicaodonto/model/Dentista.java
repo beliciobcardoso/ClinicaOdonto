@@ -9,6 +9,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
+
 public class Dentista extends Pessoa{
     private String matricula;
 }
