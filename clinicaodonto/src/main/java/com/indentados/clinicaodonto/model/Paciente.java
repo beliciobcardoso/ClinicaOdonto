@@ -10,7 +10,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
+public class Paciente extends Pessoa{
+    private String rg;
 
-public class Dentista extends Pessoa{
-    private String matricula;
+
+    public void excluir(){
+
+    }
 }
