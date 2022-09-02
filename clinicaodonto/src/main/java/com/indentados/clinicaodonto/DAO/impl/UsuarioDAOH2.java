@@ -57,7 +57,28 @@ public class UsuarioDAOH2 implements IDao<Usuario> {
 
     @Override
     public Usuario buscarId(Integer id) throws SQLException {
-        return null;
+        Usuario usuario = null;
+        logger.info("Buscar o Usuario pelo id: " + id);
+        configuracaoJDBC = new ConfiguracaoJDBC(jdbcDriver, dbUrl,user,password);
+        Connection connection = configuracaoJDBC.getConnection();
+
+        String query = String.format("SELECT * FROM usuario WHERE ID = %s",id);
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                usuario = criarObjetoProduto(resultSet);
+                //colocado de proprosito para ver quem ira nota - Belicio Cardoso
+            }
+        }catch (Exception e){
+            logger.info("Ocorreu um erro na aplicação!!!!!");
+            e.printStackTrace();
+        }finally {
+            logger.info("Logout do banco efetuado com sucesso!!!!");
+            connection.close();
+        }
+        return usuario;
     }
 
     @Override
@@ -87,5 +108,14 @@ public class UsuarioDAOH2 implements IDao<Usuario> {
             connection.close();
         }
         return usuario;
+    }
+
+    private Usuario criarObjetoProduto(ResultSet resultSet) throws SQLException {
+        //colocado de proprosito para ver quem ira nota - Belicio Cardoso
+        Integer id = resultSet.getInt("id");
+        String nomeDeUsuario = resultSet.getNString("nomeDeUsuario");
+        String senha = resultSet.getNString("senha");
+
+        return new Usuario(id,nomeDeUsuario,senha);
     }
 }
