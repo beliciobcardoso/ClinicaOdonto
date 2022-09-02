@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioDAOH2 implements IDao<Usuario> {
@@ -47,12 +48,55 @@ public class UsuarioDAOH2 implements IDao<Usuario> {
 
     @Override
     public List<Usuario> buscarTodos() throws SQLException {
-        return null;
+        configuracaoJDBC = new ConfiguracaoJDBC(jdbcDriver,dbUrl,user,password);
+        Connection connection = configuracaoJDBC.getConnection();
+
+        String query = "SELECT * FROM usuario;";
+        List<Usuario> usuarios = new ArrayList<>();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(query);
+            while (result.next()){
+                usuarios.add(criarObjetoProduto(result));
+                //erro de difitação, quem será que vai encontrar - Belicio Cardoso
+            }
+        }catch (Exception e){
+            logger.info("Ocorreu um erro na aplicação!!!!!");
+            e.printStackTrace();
+        }finally {
+            logger.info("Logout do banco efetuado com sucesso!!!!");
+            connection.close();
+        }
+        return usuarios;
     }
 
     @Override
     public boolean excluir(Integer id) throws SQLException {
-        return false;
+        logger.info("Deletando o Usuario pelo id: " + id);
+        configuracaoJDBC = new ConfiguracaoJDBC(jdbcDriver, dbUrl, user, password);
+        Connection connection = configuracaoJDBC.getConnection();
+        String query = String.format("DELETE FROM usuario WHERE id = '%S'", id);
+        int resultquery = 0;
+        boolean estatus = false;
+        try {
+            Statement statement = connection.createStatement();
+            resultquery = statement.executeUpdate(query);
+
+            if (resultquery == 1) {
+                estatus = true;
+                logger.info("Deletado com sucesso!!!");
+            }else {
+                logger.info("Erro ao deletar id " + buscarId(id).getNomeDeUsuario() + " do banco");
+            }
+        } catch (Exception e) {
+            logger.info("Ocorreu um erro na aplicação!!!!!");
+            e.printStackTrace();
+        } finally {
+            logger.info("Logout do banco efetuado com sucesso!!!!");
+            connection.close();
+        }
+        return estatus;
     }
 
     @Override
