@@ -24,5 +24,5 @@ id int auto_increment primary key,
 CREATE TABLE IF NOT EXISTS Usuario (
     id int auto_increment primary key,
     nomeDeUsuario varchar(255) not null,
-    password varchar(255) not null
+    senha varchar(255) not null
 );
