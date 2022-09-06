@@ -1,13 +1,12 @@
 package com.indentados.clinicaodonto.service;
 
-import com.indentados.clinicaodonto.DAO.IDao;
-import com.indentados.clinicaodonto.model.DTO.EnderecoDTO;
+import com.indentados.clinicaodonto.DTO.EnderecoDTO;
 import com.indentados.clinicaodonto.model.Endereco;
 import com.indentados.clinicaodonto.repository.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
