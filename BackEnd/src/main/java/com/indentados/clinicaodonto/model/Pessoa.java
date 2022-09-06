@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Pessoa {
-    public Integer id;
+    public Long id;
     public String nome;
     public String sobreNome;
     public Endereco endereco;
