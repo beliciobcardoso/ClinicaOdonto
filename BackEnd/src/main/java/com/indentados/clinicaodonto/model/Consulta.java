@@ -29,6 +29,10 @@ public class Consulta {
     @Column(name = "hora")
     private Timestamp horaConsulta;
 
-    private Dentista dentista;
-    private Paciente paciente;
+    @Column(name = "id_paciente")
+    private Long idPaciente;
+
+    @Column(name = "id_dentista")
+    private Long idDentista;
+
 }
