@@ -1,6 +1,7 @@
 package com.indentados.clinicaodonto.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.indentados.clinicaodonto.DTO.ConsultaDTO;
 import com.indentados.clinicaodonto.model.Consulta;
 import com.indentados.clinicaodonto.service.ConsultaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +29,11 @@ public class ConsultaController {
     @GetMapping
     public List<Consulta> buscarTodasConsultas() {
         return service.buscarTodas();
+    }
+
+    @RequestMapping(value = "/agendaDentista", method = RequestMethod.GET)
+    public List<ConsultaDTO> buscarTodasConsultasDTO() {
+        return service.buscarTodasDTO();
     }
 
     @RequestMapping(value = "/buscaId", method = RequestMethod.GET)
