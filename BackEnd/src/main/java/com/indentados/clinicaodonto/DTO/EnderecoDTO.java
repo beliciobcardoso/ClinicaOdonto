@@ -1,4 +1,4 @@
-package com.indentados.clinicaodonto.model.DTO;
+package com.indentados.clinicaodonto.DTO;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
