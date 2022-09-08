@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 public class Pessoa {
     public Long id;
     public String nome;
-    public String sobreNome;
+    public String sobrenome;
     public Endereco endereco;
     public String email;
     public Timestamp dataCadastro;
