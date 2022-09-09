@@ -17,13 +17,17 @@ public class EnderecoDTO {
 
     private String rua;
     private String numero;
+    private String cep;
     private String cidade;
     private String estado;
+
+
 
 
     public EnderecoDTO(Endereco endereco) {
         this.rua = endereco.getRua();
         this.numero = endereco.getNumero();
+        this.cep = endereco.getCep();
         this.cidade = endereco.getCidade();
         this.estado = endereco.getEstado();
     }

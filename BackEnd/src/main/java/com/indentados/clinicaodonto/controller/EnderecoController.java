@@ -21,14 +21,22 @@ public class EnderecoController {
     EnderecoService service;
 
     @PostMapping
-    public Endereco salvarEndereco(@RequestBody Endereco endereco){
-        return service.salvar(endereco);
+    public ResponseEntity salvarEndereco(@RequestBody Endereco endereco){
+
+        Endereco enderecoSalvo = service.salvar(endereco);
+        return new ResponseEntity(enderecoSalvo, HttpStatus.OK);
     }
 
 
     @GetMapping
-    public List<EnderecoDTO> buscarTodos(){
-        return service.buscarTodos();
+    public ResponseEntity buscarTodos(){
+
+        List<EnderecoDTO> enderecoDTOList = service.buscarTodos();
+
+        if(enderecoDTOList.isEmpty()){
+            return new ResponseEntity("Nenhum endereço encontrado!",HttpStatus.OK);
+        }
+        return new ResponseEntity(enderecoDTOList, HttpStatus.OK);
     }
 
 
@@ -50,13 +58,19 @@ public class EnderecoController {
 
 
     @PatchMapping
-    public Endereco atualizar(@RequestBody Endereco endereco){
-        return service.atualizar(endereco);
+    public ResponseEntity atualizar(@RequestBody Endereco endereco){
+
+        Endereco enderecoAtualizado = service.atualizar(endereco);
+        return new ResponseEntity(enderecoAtualizado, HttpStatus.OK);
     }
 
     @DeleteMapping
-    public void excluir(@RequestParam("id") Long id){
+    public ResponseEntity excluir(@RequestParam("id") Long id){
+
         service.excluir(id);
+
+        return new ResponseEntity("O endereço foi excluído!",HttpStatus.OK);
+
     }
 
 

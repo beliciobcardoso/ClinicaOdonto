@@ -38,4 +38,7 @@ public class Endereco {
     @Column
     private String estado;
 
+    @Column
+    private String cep;
+
 }
