@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 @Getter
@@ -14,6 +15,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Pessoa {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
@@ -30,5 +32,5 @@ public class Pessoa {
     @Column
     public String email;
     @Column(name = "data_de_cadastro")
-    public Timestamp dataCadastro;
+    private Timestamp dataCadastro = Timestamp.valueOf(LocalDateTime.now());
 }
