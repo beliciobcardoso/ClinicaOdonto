@@ -24,7 +24,7 @@ public class Pessoa {
     public String sobrenome;
 
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id_endereco")
     public Endereco endereco;
 
     @Column
