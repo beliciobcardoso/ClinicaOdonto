@@ -19,8 +19,8 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
-    public String nomeDeUsuario;
-    public String senha;
-    public Long idDentista;
+    private Long id;
+    private String nomeDeUsuario;
+    private String senha;
+    private Long idDentista;
 }
