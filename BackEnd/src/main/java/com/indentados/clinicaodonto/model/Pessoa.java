@@ -18,19 +18,19 @@ public class Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
     @Column
-    public String nome;
+    private String nome;
     @Column
-    public String sobrenome;
+    private String sobrenome;
 
     @OneToOne
     @JoinColumn(name = "id_endereco")
-    public Endereco endereco;
+    private Endereco endereco;
 
     @Column
-    public String email;
+    private String email;
     @Column(name = "data_de_cadastro")
     private Timestamp dataCadastro = Timestamp.valueOf(LocalDateTime.now());
 }
