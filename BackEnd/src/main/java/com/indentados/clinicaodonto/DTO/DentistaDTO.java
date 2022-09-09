@@ -13,7 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DentistaDTO {
-
+    //se a Paciente retornar só isso, é melhor fazer uma pessoaDTO, pra evitar repetição de código
     private String nome;
     private String sobrenome;
     private String email;

@@ -26,6 +26,7 @@ public class ConsultaDTO {
 
     private Long idDentista;
 
+    //e cadê as infos do paciente?
     public ConsultaDTO(Consulta consulta){
         this.dataConsulta = consulta.getDataConsulta();
         this.horaConsulta = consulta.getHoraConsulta();
