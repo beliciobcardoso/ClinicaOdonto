@@ -19,6 +19,9 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //se for atributo de pessoa, pode usar o id da pessoa
+    //possível redundancia com os requisitos, uma vez que os requisitos pedem só nome de usuário e não email.
+    //Usuario seria o email e o nome em display no fronte seria nome + sobrenome
     public Long id;
     public String nomeDeUsuario;
     public String senha;

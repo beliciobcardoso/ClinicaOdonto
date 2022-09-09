@@ -12,7 +12,8 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Pessoa {
-    public Long id;
+    //faltou o recebimento do usuário como atributo da pessoa
+    public Long id; //não vejo necessidade de um tipo tão grande
     public String nome;
     public String sobrenome;
     public Endereco endereco;

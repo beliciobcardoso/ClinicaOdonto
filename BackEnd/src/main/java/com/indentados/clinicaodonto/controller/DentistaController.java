@@ -47,6 +47,7 @@ public class DentistaController {
         return dentistaService.atualizar(dentista);
     }
 
+    //teoricamente, não precisa. Mesmo após a demissão, é preferível manter os dados para futuras consultas da empresa.
     @DeleteMapping
     public void excluirDentista(@RequestParam("id") Long id){
         dentistaService.excluir(id);

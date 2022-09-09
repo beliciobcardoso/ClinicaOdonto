@@ -18,6 +18,7 @@ public class Endereco {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //Long
     private Long id;
 
     @Column
