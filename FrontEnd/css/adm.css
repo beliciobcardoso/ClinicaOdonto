@@ -1,9 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+}
+
+body {
+  background-color: #e6e6e6;
+  min-height: 100vh;
+}
+
 header {
   padding: 0.5rem 1rem;
   background-color: #cacaee;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.logo {
+  background-color: #cdf5f5;
+  width: 100px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15%;
+}
+.logo p {
+  color: blue;
+  font-size: 20px;
+  font-weight: 900;
 }
 nav .menu {
   display: flex;
