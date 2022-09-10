@@ -71,12 +71,27 @@ header {
   min-width: max-content;
 }
 /* -------------- menu end ----------------- */
+
 .perfil {
+  display: flex;
+}
+
+.perfil p {
   height: 40px;
   width: 40px;
   background-color: aquamarine;
   border-radius: 20px;
+  font-weight: 900;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: 10px;
+}
+
+.perfil button {
+  background-color: blue;
+  border-radius: 20px;
+  color: #fff;
+  padding: 0 10px;
+  font-weight: 900;
 }
