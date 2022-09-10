@@ -2,6 +2,7 @@ header {
   padding: 0.5rem 1rem;
   background-color: #cacaee;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 nav .menu {
