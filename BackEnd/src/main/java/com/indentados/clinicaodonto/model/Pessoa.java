@@ -5,18 +5,32 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
+@MappedSuperclass
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Pessoa {
-    //faltou o recebimento do usuário como atributo da pessoa ou ao menos uma pk de user
-    public Long id; //não vejo necessidade de um tipo tão grande
-    public String nome;
-    public String sobrenome;
-    public Endereco endereco;
-    public String email;
-    public Timestamp dataCadastro;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column
+    private String nome;
+    @Column
+    private String sobrenome;
+
+    @OneToOne
+    @JoinColumn(name = "id_endereco")
+    private Endereco endereco;
+
+    @Column
+    private String email;
+    @Column(name = "data_de_cadastro")
+    private Timestamp dataCadastro = Timestamp.valueOf(LocalDateTime.now());
 }
