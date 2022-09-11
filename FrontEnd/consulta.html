@@ -17,8 +17,8 @@
           <li>
             <a href="#">CADASTRA</a>
             <ul class="dropdown">
-              <li><a href="#" onclick="modal()">CADASTRA DENTISTA</a></li>
-              <li><a href="#">CADASTRA PACIENTE</a></li>
+              <li><a href="#" onclick="modalD()">CADASTRA DENTISTA</a></li>
+              <li><a href="#" onclick="modalP()">CADASTRA PACIENTE</a></li>
             </ul>
           </li>
         </ul>
@@ -66,7 +66,7 @@
       </section>
     </article>
 
-    <div class="modal-overlay">
+    <div class="modal-overlay" id="dentista">
       <div class="modal">
         <div id="form">
           <h2>Cadastro de Dentista</h2>
@@ -105,7 +105,52 @@
             </div>
             <div class="input-group actions">
               <button>Salvar</button>
-              <a href="#" onclick="modal()" class="button cancel">Cancelar</a>
+              <a href="#" onclick="modalD()" class="button cancel">Cancelar</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="modal-overlay" id="paciente">
+      <div class="modal">
+        <div id="form">
+          <h2>Cadastro de Paciente</h2>
+          <form action="" onsubmit="Form.submit(event)">
+            <div class="input-group">
+              <fieldset>
+                <legend>Dados Pessoais</legend>
+                <label class="sr-only" for="rg">RG</label>
+                <input type="text" name="rg" id="rg" placeholder="RG" />
+                <label class="sr-only" for="nome">Nome</label>
+                <input type="text" name="nome" id="nome" placeholder="Nome" />
+                <label class="sr-only" for="sobrenome">sobrenome</label>
+                <input type="text" name="sobrenome" id="sobrenome" placeholder="SobreNome" />
+                <label class="sr-only" for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Email" />
+              </fieldset>
+            </div>
+            <div class="input-group">
+              <fieldset>
+                <legend>Endereço</legend>
+                <label class="sr-only" for="logradouro">Logradouro</label>
+                <input type="text" name="logradouro" id="logradouro" placeholder="Logradouro" />
+                <label class="sr-only" for="numero">Numero</label>
+                <input type="text" name="numero" id="numero" placeholder="Numero" />
+                <label class="sr-only" for="bairro">Bairro</label>
+                <input type="text" name="bairro" id="bairro" placeholder="Bairro" />
+                <label class="sr-only" for="complemento">Complemento</label>
+                <input type="text" name="complemento" id="complemento" placeholder="Complemento" />
+                <label class="sr-only" for="cidade">Cidade</label>
+                <input type="text" name="cidade" id="cidade" placeholder="Cidade" />
+                <label class="sr-only" for="estado">Estado</label>
+                <input type="text" name="estado" id="estado" placeholder="Estado" />
+                <label class="sr-only" for="cep">CEP</label>
+                <input type="text" name="cep" id="cep" placeholder="CEP" />
+              </fieldset>
+            </div>
+            <div class="input-group actions">
+              <button>Salvar</button>
+              <a href="#" onclick="modalP()" class="button cancel">Cancelar</a>
             </div>
           </form>
         </div>
