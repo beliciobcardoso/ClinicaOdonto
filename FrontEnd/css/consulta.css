@@ -22,7 +22,7 @@ header {
   font-weight: 900;
 }
 
-/* --------------------- menu start -------------------------- */
+/* --------------------- menu -------------------------- */
 
 .menu {
   list-style: none;
@@ -70,7 +70,7 @@ header {
   display: block;
   min-width: max-content;
 }
-/* -------------- menu end ----------------- */
+/* -------------- menu ----------------- */
 
 .perfil {
   display: flex;
@@ -96,7 +96,7 @@ header {
   font-weight: 900;
 }
 
-/* ----------------- lista de consultas start --------------------- */
+/* ----------------- lista de consultas --------------------- */
 
 article {
   margin: 10px 50px;
@@ -140,4 +140,106 @@ section .conteiner p:nth-child(2) {
   margin-left: 15px;
   margin-right: 10px;
 }
-/* ----------------- lista de consultas end --------------------- */
+
+/* ---------------------- Modal ------------------------------ */
+
+.modal-overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  background-color: #b9b9b9;
+  padding: 2.4rem;
+  width: 80%;
+}
+
+/* ------------------------- Form ----------------------------------- */
+
+#form {
+  max-width: 100%;
+}
+
+#form h2 {
+  margin-top: 0;
+}
+
+input {
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+input:nth-child(odd) {
+  margin-right: 0.5rem;
+}
+
+.input-group {
+  margin: 1rem 0;
+}
+.input-group fieldset {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.input-group.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-group.actions .button,
+.input-group.actions button {
+  width: 20%;
+}
+
+/* ---------------------------Botões ------------------------------------------ */
+
+.button.cancel {
+  color: #ff0000;
+  border: 2px solid;
+  border-radius: 0.25rem;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+  font-size: 1.5rem;
+}
+
+.button.cancel:hover {
+  opacity: 1;
+}
+
+button {
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 0.25rem;
+  color: rgb(0, 0, 0);
+  padding: 0;
+  background-color: #00ff00;
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+
+button:hover {
+  background-color: #005f00;
+  color: #ffffff;
+}
