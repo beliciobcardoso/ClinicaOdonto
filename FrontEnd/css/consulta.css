@@ -196,10 +196,16 @@ input:nth-child(odd) {
 .input-group {
   margin: 1rem 0;
 }
-.input-group fieldset {
+
+.input-group:nth-child(1) fieldset {
   padding: 10px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 150px 1fr 1fr 1fr;
+}
+.input-group:nth-child(2) fieldset {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 100px 0.5fr 1fr;
 }
 
 .input-group.actions {
