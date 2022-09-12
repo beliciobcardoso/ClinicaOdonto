@@ -13,3 +13,10 @@ function modalP() {
 
 }
 
+function modalAgenda() {
+    document.querySelector("#agenda")
+        .classList.toggle("active")
+        ,            // limpar fomulario
+        Form.clearFlields();
+
+}

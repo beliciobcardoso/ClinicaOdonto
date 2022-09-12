@@ -13,7 +13,7 @@
       <div class="logo"><p>LOGO</p></div>
       <nav>
         <ul class="menu">
-          <li><a href="#">CRIAR AGENDA</a></li>
+          <li><a href="#" onclick="modalAgenda()">CRIAR AGENDA</a></li>
           <li>
             <a href="#">CADASTRA</a>
             <ul class="dropdown">
@@ -67,10 +67,10 @@
     </article>
 
     <div class="modal-overlay" id="dentista">
-      <div class="modal">
+      <div class="modal overflow">
         <div id="form">
           <h2>Cadastro de Dentista</h2>
-          <form action="" onsubmit="Form.submit(event)">
+          <form action="">
             <div class="input-group">
               <fieldset>
                 <legend>Dados Pessoais</legend>
@@ -108,14 +108,42 @@
               <a href="#" onclick="modalD()" class="button cancel">Cancelar</a>
             </div>
           </form>
+          <table class="data-table" id="data-dentista">
+            <thead>
+              <tr>
+                <th>Matricula</th>
+                <th>Nome</th>
+                <th>SobreNome</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1223333333</td>
+                <td>Fulano</td>
+                <td>De Tal</td>
+              </tr>
+              <tr>
+                <td>1223333333</td>
+                <td>Fulano</td>
+                <td>De Tal</td>
+              </tr>
+              <tr>
+                <td>1223333333</td>
+                <td>Fulano</td>
+                <td>De Tal</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
+
     <div class="modal-overlay" id="paciente">
-      <div class="modal">
+      <div class="modal overflow">
         <div id="form">
           <h2>Cadastro de Paciente</h2>
-          <form action="" onsubmit="Form.submit(event)">
+          <form action="">
             <div class="input-group">
               <fieldset>
                 <legend>Dados Pessoais</legend>
@@ -151,6 +179,61 @@
             <div class="input-group actions">
               <button>Salvar</button>
               <a href="#" onclick="modalP()" class="button cancel">Cancelar</a>
+            </div>
+          </form>
+
+          <table class="data-table" id="data-paciente">
+            <thead>
+              <tr>
+                <th>RG</th>
+                <th>Nome</th>
+                <th>SobreNome</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1223333333</td>
+                <td>Fulano</td>
+                <td>De Tal</td>
+              </tr>
+              <tr>
+                <td>1223333333</td>
+                <td>Fulano</td>
+                <td>De Tal</td>
+              </tr>
+              <tr>
+                <td>1223333333</td>
+                <td>Fulano</td>
+                <td>De Tal</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="agenda">
+      <div class="modal">
+        <div id="form">
+          <h2>Agenda Consulta</h2>
+          <form action="">
+            <div class="input-group">
+              <fieldset>
+                <legend>Criar Consulta</legend>
+                <label class="sr-only" for="dentista">Dentista</label>
+                <input type="text" name="dentista" id="dentista" placeholder="Dentista" />
+                <label class="sr-only" for="paciente">Paciente</label>
+                <input type="text" name="paciente" id="paciente" placeholder="Paciente" />
+                <label class="sr-only" for="data">Data</label>
+                <input type="date" name="data" id="data" placeholder="Data" />
+                <label class="sr-only" for="horario">Horario</label>
+                <input type="time" name="horario" id="horario" placeholder="Horario" />
+              </fieldset>
+            </div>
+            <div class="input-group actions">
+              <button>Salvar</button>
+              <a href="#" onclick="modalAgenda()" class="button cancel">Cancelar</a>
             </div>
           </form>
         </div>
