@@ -1,4 +1,4 @@
-package com.indentados.clinicaodonto.model.DTO;
+package com.indentados.clinicaodonto.DTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.indentados.clinicaodonto.model.Dentista;
@@ -22,5 +22,12 @@ public class DentistaDTO {
         this.nome = dentista.getNome();
         this.sobrenome = dentista.getSobrenome();
         this.email = dentista.getEmail();
+    }
+    
+    public String toString()
+    {
+        return this.nome + "\n" +
+               this.sobrenome + "\n" +
+               this.email;
     }
 }

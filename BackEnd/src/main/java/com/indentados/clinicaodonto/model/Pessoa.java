@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@AllArgsConstructor //provavelmente, poderá ser apagado
+@NoArgsConstructor  //idem
 public abstract class Pessoa {
 
     @Id

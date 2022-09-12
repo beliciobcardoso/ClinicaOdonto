@@ -1,6 +1,7 @@
 package com.indentados.clinicaodonto.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.indentados.clinicaodonto.DTO.DentistaDTO;
 import com.indentados.clinicaodonto.model.Dentista;
 import com.indentados.clinicaodonto.service.DentistaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,22 +35,39 @@ public class DentistaController {
 
         Optional<Dentista> dentistaOptional = dentistaService.buscarPorId(id);
         if (dentistaOptional.isEmpty()){
+            //remover esse corpo, já que nada foi encontrado
             return new ResponseEntity("Dentista não encontrado", HttpStatus.NOT_FOUND);
         }
 
         Dentista dentista = dentistaOptional.get();
-
-        return new ResponseEntity(dentista,HttpStatus.OK);
+        
+        DentistaDTO dentistaDTO = mapper.convertValue(dentista, DentistaDTO.class);
+        
+        //System.out.println(dentistaDTO);
+        return new ResponseEntity(dentistaDTO,HttpStatus.OK);
     }
 
     @PatchMapping
-    public Dentista atualizarDadosDentista(@RequestBody Dentista dentista){
-        return dentistaService.atualizar(dentista);
+    public ResponseEntity atualizarDadosDentista(@RequestBody Dentista dentista){
+        //antes de atualizar, verifica se o alvo existe, para impedir que outro seja criado. Verificação fraca.
+        if(dentista.getId() != null)
+        {
+            return new ResponseEntity(dentistaService.atualizar(dentista), HttpStatus.OK);
+        }
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 
     //teoricamente, não precisa. Mesmo após a demissão, é preferível manter os dados para futuras consultas da empresa.
     @DeleteMapping
-    public void excluirDentista(@RequestParam("id") Long id){
-        dentistaService.excluir(id);
+    public ResponseEntity excluirDentista(@RequestParam("id") Long id){
+        //Assim será validado e respondido ao mesmo tempo, mas dá uma resposta ruim. lógica, mas ruim.
+        //return buscarDentistaPorId(id);
+        ResponseEntity rs = buscarDentistaPorId(id);
+        if(rs.getStatusCodeValue() == 200)//se localizar, pode excluir
+        {
+            dentistaService.excluir(id);
+            return rs = new ResponseEntity(HttpStatus.OK);
+        }
+        return rs = new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 }

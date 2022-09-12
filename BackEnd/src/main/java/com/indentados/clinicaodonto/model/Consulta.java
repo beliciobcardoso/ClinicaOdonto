@@ -22,7 +22,6 @@ public class Consulta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //Long
     @Column(name = "data")
     private Date dataConsulta;
 
