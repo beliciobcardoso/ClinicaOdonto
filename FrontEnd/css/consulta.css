@@ -208,6 +208,12 @@ input:nth-child(odd) {
   grid-template-columns: 1fr 100px 0.5fr 1fr;
 }
 
+#input-agenda fieldset {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 .input-group.actions {
   display: flex;
   justify-content: space-between;
