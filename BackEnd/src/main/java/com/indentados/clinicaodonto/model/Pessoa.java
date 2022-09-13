@@ -25,7 +25,7 @@ public abstract class Pessoa {
     @Column
     private String sobrenome;
 
-    @OneToOne(cascade = CascadeType.PERSIST )
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_endereco")
     private Endereco endereco;
 
