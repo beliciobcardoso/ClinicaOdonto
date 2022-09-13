@@ -5,11 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import javax.persistence.*;
+
 
 @Getter
 @Setter
@@ -20,6 +23,11 @@ import java.time.LocalDateTime;
 @Table(name = "dentista")
 
 public class Dentista extends Pessoa{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column
     private String matricula;
     
