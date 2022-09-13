@@ -70,9 +70,9 @@
       <div class="modal overflow">
         <div id="form">
           <h2>Cadastro de Dentista</h2>
-          <form action="">
+          <form action="" onsubmit="dentistasave(event)">
             <div class="input-group">
-              <fieldset>
+              <fieldset id="dados-dentista">
                 <legend>Dados Pessoais</legend>
                 <label class="sr-only" for="matricula">Matricula</label>
                 <input type="text" name="matricula" id="matricula" placeholder="Matricula" />
@@ -85,7 +85,7 @@
               </fieldset>
             </div>
             <div class="input-group">
-              <fieldset>
+              <fieldset id="endereco-dentista">
                 <legend>Endereço</legend>
                 <label class="sr-only" for="logradouro">Logradouro</label>
                 <input type="text" name="logradouro" id="logradouro" placeholder="Logradouro" />
@@ -143,9 +143,9 @@
       <div class="modal overflow">
         <div id="form">
           <h2>Cadastro de Paciente</h2>
-          <form action="">
+          <form action="" onsubmit="pacientesave(event)">
             <div class="input-group">
-              <fieldset>
+              <fieldset id="dados-paciente">
                 <legend>Dados Pessoais</legend>
                 <label class="sr-only" for="rg">RG</label>
                 <input type="text" name="rg" id="rg" placeholder="RG" />
@@ -158,7 +158,7 @@
               </fieldset>
             </div>
             <div class="input-group">
-              <fieldset>
+              <fieldset id="endereco-paciente">
                 <legend>Endereço</legend>
                 <label class="sr-only" for="logradouro">Logradouro</label>
                 <input type="text" name="logradouro" id="logradouro" placeholder="Logradouro" />
@@ -217,7 +217,7 @@
       <div class="modal">
         <div id="form">
           <h2>Agenda Consulta</h2>
-          <form action="" onsubmit="teste(event)">
+          <form action="" onsubmit="consultasave(event)">
             <div class="input-group" id="input-agenda">
               <fieldset>
                 <legend>Criar Consulta</legend>
