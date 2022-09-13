@@ -1,21 +1,13 @@
 package com.indentados.clinicaodonto.service;
 
-import com.indentados.clinicaodonto.ClinicaodontoApplication;
-import com.indentados.clinicaodonto.controller.DentistaController;
 import com.indentados.clinicaodonto.model.Dentista;
 import com.indentados.clinicaodonto.model.Endereco;
-import com.indentados.clinicaodonto.repository.DentistaRepository;
-import com.indentados.clinicaodonto.service.DentistaService;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Objects;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,7 +22,7 @@ class DentistaServiceTest
 	@BeforeEach
 	void fazAntes()
 	{
-		d = new Dentista("Nome", "Sobrenome", new Endereco(1L, "rua", "num", "complemento", "bairro", "cidade", "estado", "cep"), "email@email.com", "1");
+		d = new Dentista("Nome", "Sobrenome", new Endereco(null, "rua", "num", "complemento", "bairro", "cidade", "estado", "cep"), "email@email.com", "1");
 	}
 	
 	@Test

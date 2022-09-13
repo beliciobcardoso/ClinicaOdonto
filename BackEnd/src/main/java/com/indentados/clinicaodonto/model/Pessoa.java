@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @Getter
 @Setter
-@AllArgsConstructor //provavelmente, poderá ser apagado
-@NoArgsConstructor  //idem
+@AllArgsConstructor
+@NoArgsConstructor
 public abstract class Pessoa {
 
     @Id
@@ -25,7 +25,7 @@ public abstract class Pessoa {
     @Column
     private String sobrenome;
 
-    @OneToOne(cascade = CascadeType.PERSIST )
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_endereco")
     private Endereco endereco;
 

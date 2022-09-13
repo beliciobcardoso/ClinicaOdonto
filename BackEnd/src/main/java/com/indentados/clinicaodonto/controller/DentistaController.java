@@ -35,39 +35,32 @@ public class DentistaController {
 
         Optional<Dentista> dentistaOptional = dentistaService.buscarPorId(id);
         if (dentistaOptional.isEmpty()){
-            //remover esse corpo, já que nada foi encontrado
             return new ResponseEntity("Dentista não encontrado", HttpStatus.NOT_FOUND);
         }
 
         Dentista dentista = dentistaOptional.get();
-        
         DentistaDTO dentistaDTO = mapper.convertValue(dentista, DentistaDTO.class);
         
-        //System.out.println(dentistaDTO);
         return new ResponseEntity(dentistaDTO,HttpStatus.OK);
     }
 
     @PatchMapping
     public ResponseEntity atualizarDadosDentista(@RequestBody Dentista dentista){
-        //antes de atualizar, verifica se o alvo existe, para impedir que outro seja criado. Verificação fraca.
         if(dentista.getId() != null)
         {
             return new ResponseEntity(dentistaService.atualizar(dentista), HttpStatus.OK);
         }
-        return new ResponseEntity(HttpStatus.NOT_FOUND);
+        return new ResponseEntity("Dentista não encontrado", HttpStatus.NOT_FOUND);
     }
 
-    //teoricamente, não precisa. Mesmo após a demissão, é preferível manter os dados para futuras consultas da empresa.
     @DeleteMapping
     public ResponseEntity excluirDentista(@RequestParam("id") Long id){
-        //Assim será validado e respondido ao mesmo tempo, mas dá uma resposta ruim. lógica, mas ruim.
-        //return buscarDentistaPorId(id);
         ResponseEntity rs = buscarDentistaPorId(id);
-        if(rs.getStatusCodeValue() == 200)//se localizar, pode excluir
+        if(rs.getStatusCodeValue() == 200)
         {
             dentistaService.excluir(id);
             return rs = new ResponseEntity(HttpStatus.OK);
         }
-        return rs = new ResponseEntity(HttpStatus.NOT_FOUND);
+        return rs = new ResponseEntity("Dentista não encontrado para deleção",HttpStatus.NOT_FOUND);
     }
 }

@@ -1,8 +1,10 @@
 package com.indentados.clinicaodonto.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.management.ConstructorParameters;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -11,8 +13,9 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@AllArgsConstructor // não necessário pois pode zoar a regra de negócio
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@NoArgsConstructor
+
 @Entity
 @Table(name = "dentista")
 
