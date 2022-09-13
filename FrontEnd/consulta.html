@@ -213,18 +213,28 @@
       </div>
     </div>
 
-    <div class="modal-overlay active" id="agenda">
+    <div class="modal-overlay" id="agenda">
       <div class="modal">
         <div id="form">
           <h2>Agenda Consulta</h2>
-          <form action="">
+          <form action="" onsubmit="teste(event)">
             <div class="input-group" id="input-agenda">
               <fieldset>
                 <legend>Criar Consulta</legend>
                 <label class="sr-only" for="dentista">Dentista</label>
-                <input type="text" name="dentista" id="dentista" placeholder="Dentista" />
+                <select name="dentista" id="dentista">
+                  <option value="Dr Lucas">Dr Lucas</option>
+                  <option value="Dra Patricia" selected>Dra Patricia</option>
+                  <option value="Dra Rosana">Dra Rosana</option>
+                  <option value="Dr Belicio">Dr Belicio</option>
+                </select>
                 <label class="sr-only" for="paciente">Paciente</label>
-                <input type="text" name="paciente" id="paciente" placeholder="Paciente" />
+                <select name="paciente" id="paciente">
+                  <option value="Lucas de Jesus">Lucas de Jesus</option>
+                  <option value="Patricia Asano" selected>Patricia Asano</option>
+                  <option value="Rosana Pereira">Rosana Pereira</option>
+                  <option value="Belicio Cardoso">Belicio Cardoso</option>
+                </select>
                 <label class="sr-only" for="data">Data</label>
                 <input type="date" name="data" id="data" placeholder="Data" />
                 <label class="sr-only" for="horario">Horario</label>

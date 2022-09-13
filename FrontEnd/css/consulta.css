@@ -214,6 +214,14 @@ input:nth-child(odd) {
   grid-template-columns: 1fr 1fr;
 }
 
+select {
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.8rem;
+  margin-bottom: 0.5rem;
+  width: 17rem;
+}
+
 .input-group.actions {
   display: flex;
   justify-content: space-between;
