@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -20,13 +19,14 @@ public class DentistaController {
     DentistaService dentistaService;
 
     @PostMapping
-    public Dentista salvarDentista(@RequestBody Dentista dentista){
-        return dentistaService.salvar(dentista);
+    public ResponseEntity salvarDentista(@RequestBody Dentista dentista){
+        return new ResponseEntity(dentistaService.salvar(dentista), HttpStatus.OK);
     }
 
     @GetMapping
-    public List<Dentista> buscarDentistas(){
-        return dentistaService.buscarTodos();
+    public ResponseEntity buscarDentistas(){
+        dentistaService.buscarTodos();
+        return new ResponseEntity(dentistaService.buscarTodos(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/buscaDentistaPorId", method = RequestMethod.GET)
