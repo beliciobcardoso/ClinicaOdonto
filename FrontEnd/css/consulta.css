@@ -161,6 +161,11 @@ section .conteiner p:nth-child(2) {
   visibility: visible;
 }
 
+.overflow {
+  height: 100vh;
+  overflow-y: auto;
+}
+
 .modal {
   background-color: #b9b9b9;
   padding: 2.4rem;
@@ -191,10 +196,30 @@ input:nth-child(odd) {
 .input-group {
   margin: 1rem 0;
 }
-.input-group fieldset {
+
+.input-group:nth-child(1) fieldset {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 150px 1fr 1fr 1fr;
+}
+.input-group:nth-child(2) fieldset {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 100px 0.5fr 1fr;
+}
+
+#input-agenda fieldset {
   padding: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+
+select {
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.8rem;
+  margin-bottom: 0.5rem;
+  width: 17rem;
 }
 
 .input-group.actions {
@@ -242,4 +267,42 @@ button {
 button:hover {
   background-color: #005f00;
   color: #ffffff;
+}
+
+/* ----------------- table --------------------- */
+
+.data-table {
+  width: 100%;
+  border-spacing: 0 0.5rem;
+  color: #969cb3;
+}
+
+table thead tr th:first-child,
+table tbody tr td:first-child {
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+table thead tr th:last-child,
+table tbody tr td:last-child {
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+table th {
+  background-color: white;
+  font-weight: normal;
+  padding: 1rem 1rem;
+  text-align: left;
+}
+
+table td {
+  background-color: #fff;
+  padding: 1rem 1rem;
+}
+
+tbody tr {
+  opacity: 0.7;
+}
+
+tbody tr:hover {
+  opacity: 1;
 }
