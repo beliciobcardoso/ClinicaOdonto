@@ -1,13 +1,10 @@
 package com.indentados.clinicaodonto.service;
 
-import com.indentados.clinicaodonto.DTO.EnderecoDTO;
 import com.indentados.clinicaodonto.model.Endereco;
 import com.indentados.clinicaodonto.repository.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,17 +20,9 @@ public class EnderecoService {
     }
 
 
-    public List<EnderecoDTO> buscarTodos(){
-
+    public List<Endereco> buscarTodos(){
         List<Endereco> listEndereco = repository.findAll();
-
-        List<EnderecoDTO> listEnderecoDTO = new ArrayList<>();
-
-        for(Endereco e : listEndereco){
-            listEnderecoDTO.add(new EnderecoDTO(e));
-        }
-
-        return  listEnderecoDTO;
+        return listEndereco;
     }
 
 
