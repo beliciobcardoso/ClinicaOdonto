@@ -17,8 +17,8 @@
           <li>
             <a href="#">CADASTRA</a>
             <ul class="dropdown">
-              <li><a href="#" onclick="modalD()">CADASTRA DENTISTA</a></li>
-              <li><a href="#" onclick="modalP()">CADASTRA PACIENTE</a></li>
+              <li><a href="#" onclick="modalDentistaOpen()">CADASTRA DENTISTA</a></li>
+              <li><a href="#" onclick="modalPacienteOpen()">CADASTRA PACIENTE</a></li>
             </ul>
           </li>
         </ul>
@@ -105,7 +105,7 @@
             </div>
             <div class="input-group actions">
               <button>Salvar</button>
-              <a href="#" onclick="modalD()" class="button cancel">Cancelar</a>
+              <a href="#" onclick="modalDentistaClose()" class="button cancel">Cancelar</a>
             </div>
           </form>
           <table class="data-table" id="data-dentista">
@@ -117,23 +117,7 @@
                 <th></th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>1223333333</td>
-                <td>Fulano</td>
-                <td>De Tal</td>
-              </tr>
-              <tr>
-                <td>1223333333</td>
-                <td>Fulano</td>
-                <td>De Tal</td>
-              </tr>
-              <tr>
-                <td>1223333333</td>
-                <td>Fulano</td>
-                <td>De Tal</td>
-              </tr>
-            </tbody>
+            <tbody></tbody>
           </table>
         </div>
       </div>
@@ -178,7 +162,7 @@
             </div>
             <div class="input-group actions">
               <button>Salvar</button>
-              <a href="#" onclick="modalP()" class="button cancel">Cancelar</a>
+              <a href="#" onclick="modalPacienteClose()" class="button cancel">Cancelar</a>
             </div>
           </form>
 

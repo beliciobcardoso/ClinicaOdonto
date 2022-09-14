@@ -1,17 +1,4 @@
-function modalD() {
-    document.querySelector("#dentista")
-        .classList.toggle("active")
-}
-
-function modalP() {
-    document.querySelector("#paciente")
-        .classList.toggle("active")
-}
-
-function modalAgenda() {
-    document.querySelector("#agenda")
-        .classList.toggle("active")
-}
+let listaDentista = document.querySelector('#data-dentista')
 
 let matricula = document.querySelector("#dados-dentista>input#matricula")
 let nome_dentista = document.querySelector("#dados-dentista>input#nome")
@@ -45,6 +32,88 @@ let id_paciente = document.querySelector("select#paciente")
 let data = document.querySelector("input#data")
 let horario = document.querySelector("input#horario")
 
+let requestConfiguration = {
+    headers: {
+        //cabeçalho da requisição
+        'Content-Type': 'application/json'
+    },
+};
+
+function getDentistas() {
+    fetch('http://localhost:8080/dentista', requestConfiguration).then(
+        (response) => {
+            if (response.ok) {
+                response.json().then(
+                    (dentistas) => {
+                        const tbody = document.createElement("tbody")
+
+                        for (let dentista of dentistas) {
+                            let matricula = document.createTextNode(dentista.matricula)
+                            let nome = document.createTextNode(dentista.nome)
+                            let sobrenome = document.createTextNode(dentista.sobrenome)
+
+                            const tr = document.createElement("tr")
+                            const td1 = document.createElement("td")
+                            const td2 = document.createElement("td")
+                            const td3 = document.createElement("td")
+
+                            td1.appendChild(matricula)
+                            td2.appendChild(nome)
+                            td3.appendChild(sobrenome)
+
+                            tr.appendChild(td1)
+                            tr.appendChild(td2)
+                            tr.appendChild(td3)
+                            //console.log(tr)
+
+                            tbody.appendChild(tr)
+
+                        }
+                        listaDentista.appendChild(tbody)
+
+                    }
+                )
+            }
+        }
+    )
+}
+
+
+
+function modalDentistaOpen() {
+    document.querySelector("#dentista")
+        .classList.add("active"),
+        getDentistas();
+}
+
+function modalDentistaClose() {
+    document.querySelector("#dentista")
+        .classList.remove("active"),
+        matricula = ""
+    nome = ""
+    sobrenome = ""
+
+    //listaDentista.removeChild(tr)
+    console.log(listaDentista)
+}
+
+function modalPacienteOpen() {
+    document.querySelector("#paciente")
+        .classList.add("active")
+}
+function modalPacienteClose() {
+    document.querySelector("#paciente")
+        .classList.remove("active")
+}
+
+function modalAgenda() {
+    document.querySelector("#agenda")
+        .classList.toggle("active")
+}
+
+
+
+
 function consultasave(event) {
     event.preventDefault();
     console.log(id_dentista.value)
@@ -62,3 +131,7 @@ function pacientesave(event) {
     event.preventDefault();
     console.log(rg.value)
 }
+
+// window.addEventListener('load', () => {
+//     getDentistas();
+// })
