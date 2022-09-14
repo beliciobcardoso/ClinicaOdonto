@@ -27,6 +27,7 @@ public class DentistaService {
     }
 
     public Dentista atualizar(Dentista dentista){
+        //corrigir update: colocar verificação antes de "salvar"
         return dentistaRepository.save(dentista);
     }
 

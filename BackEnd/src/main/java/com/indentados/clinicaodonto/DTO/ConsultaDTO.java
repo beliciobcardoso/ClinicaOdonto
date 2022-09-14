@@ -24,11 +24,12 @@ public class ConsultaDTO {
 
     private Timestamp horaConsulta;
 
-    private Long idDentista;
+    private Dentista dentista;
 
+    //e cadê as infos do paciente?
     public ConsultaDTO(Consulta consulta){
         this.dataConsulta = consulta.getDataConsulta();
         this.horaConsulta = consulta.getHoraConsulta();
-        this.idDentista = consulta.getIdDentista();
+        this.dentista = consulta.getDentista();
     }
 }

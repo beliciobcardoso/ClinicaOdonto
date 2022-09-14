@@ -22,17 +22,18 @@ public class Consulta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(name = "data")
     private Date dataConsulta;
 
     @Column(name = "hora")
     private Timestamp horaConsulta;
 
-    @Column(name = "id_paciente")
-    private Long idPaciente;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "id_paciente", referencedColumnName = "id")
+    private Paciente paciente;
 
-    @Column(name = "id_dentista")
-    private Long idDentista;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "id_dentista", referencedColumnName = "id")
+    private Dentista dentista;
 
 }
