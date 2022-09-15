@@ -33,6 +33,7 @@ public class ConsultaController {
 
     @RequestMapping(value = "/agendaDentista", method = RequestMethod.GET)
     public List<ConsultaDTO> buscarTodasConsultasDTO() {
+
         return service.buscarTodasDTO();
     }
 

@@ -1,8 +1,9 @@
 package com.indentados.clinicaodonto.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.indentados.clinicaodonto.DTO.PessoaDTO;
+import com.indentados.clinicaodonto.DTO.DentistaDTO;
 import com.indentados.clinicaodonto.model.Dentista;
+import com.indentados.clinicaodonto.model.Pessoa;
 import com.indentados.clinicaodonto.service.DentistaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,7 +41,7 @@ public class DentistaController {
         }
         
         Dentista dentista = dentistaOptional.get();
-        PessoaDTO dentistaDTO = mapper.convertValue(dentista, PessoaDTO.class);
+        DentistaDTO dentistaDTO = mapper.convertValue(dentista, DentistaDTO.class);
         
         return new ResponseEntity(dentistaDTO,HttpStatus.OK);
     }

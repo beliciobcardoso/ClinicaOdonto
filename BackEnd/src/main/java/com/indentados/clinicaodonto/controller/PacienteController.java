@@ -36,7 +36,7 @@ public class PacienteController {
         return new ResponseEntity<>(pacienteDTOList,HttpStatus.OK);
     }
 
-    @RequestMapping(value = "buscaId", method = RequestMethod.GET)
+    @RequestMapping(value = "/buscaId", method = RequestMethod.GET)
     public ResponseEntity buscarPorId(@RequestParam("id") Long id){
         ObjectMapper mapper = new ObjectMapper();
 
