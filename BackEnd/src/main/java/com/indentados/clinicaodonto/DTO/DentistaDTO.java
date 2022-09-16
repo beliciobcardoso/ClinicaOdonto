@@ -17,17 +17,22 @@ public class DentistaDTO {
     private String nome;
     private String sobrenome;
     private String email;
+    private String matricula;
 
     public DentistaDTO(Dentista dentista) {
         this.nome = dentista.getNome();
         this.sobrenome = dentista.getSobrenome();
         this.email = dentista.getEmail();
+        this.matricula = dentista.getMatricula();
     }
-    
-    public String toString()
-    {
-        return this.nome + "\n" +
-               this.sobrenome + "\n" +
-               this.email;
+
+    @Override
+    public String toString() {
+        return "DentistaDTO{" +
+                "nome='" + nome + '\'' +
+                ", sobrenome='" + sobrenome + '\'' +
+                ", email='" + email + '\'' +
+                ", matricula='" + matricula + '\'' +
+                '}';
     }
 }
