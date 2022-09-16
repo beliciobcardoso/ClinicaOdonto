@@ -301,6 +301,7 @@ table td {
 
 tbody tr {
   opacity: 0.7;
+  cursor: pointer;
 }
 
 tbody tr:hover {

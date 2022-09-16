@@ -1,4 +1,5 @@
-let listaDentista = document.querySelector('#data-dentista')
+let listaDentista = document.querySelector('#data-dentista tbody')
+let listaPaciente = document.querySelector('#data-paciente tbody')
 
 let matricula = document.querySelector("#dados-dentista>input#matricula")
 let nome_dentista = document.querySelector("#dados-dentista>input#nome")
@@ -18,7 +19,7 @@ let nome_paciente = document.querySelector("#dados-paciente>input#nome")
 let sobrenome_paciente = document.querySelector("#dados-paciente>input#sobrenome")
 let email_paciente = document.querySelector("#dados-paciente>input#email")
 
-let lougradouro_paciente = document.querySelector("#endereco-paciente>input#lougradouro")
+let logradouro_paciente = document.querySelector("#endereco-paciente>input#lougradouro")
 let numero_paciente = document.querySelector("#endereco-paciente>input#numero")
 let bairro_paciente = document.querySelector("#endereco-paciente>input#bairro")
 let complemento_paciente = document.querySelector("#endereco-paciente>input#complemento")
@@ -39,38 +40,58 @@ let requestConfiguration = {
     },
 };
 
+const templteTabelaTr = `
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                `
+
 function getDentistas() {
     fetch('http://localhost:8080/dentista', requestConfiguration).then(
         (response) => {
             if (response.ok) {
                 response.json().then(
                     (dentistas) => {
-                        const tbody = document.createElement("tbody")
-
-                        for (let dentista of dentistas) {
-                            let matricula = document.createTextNode(dentista.matricula)
-                            let nome = document.createTextNode(dentista.nome)
-                            let sobrenome = document.createTextNode(dentista.sobrenome)
-
-                            const tr = document.createElement("tr")
-                            const td1 = document.createElement("td")
-                            const td2 = document.createElement("td")
-                            const td3 = document.createElement("td")
-
-                            td1.appendChild(matricula)
-                            td2.appendChild(nome)
-                            td3.appendChild(sobrenome)
-
-                            tr.appendChild(td1)
-                            tr.appendChild(td2)
-                            tr.appendChild(td3)
-                            //console.log(tr)
-
-                            tbody.appendChild(tr)
-
+                        if (dentistas.length === 0) {
+                            listaDentista.innerHTML = templteTabelaTr
+                            console.log("Lista vazia")
+                        } else {
+                            console.log("Lista com ", dentistas.length, " Dentistas")
+                            listaDentista.innerHTML = ''
+                            for (let dentista of dentistas) {
+                                listaDentista.innerHTML += `
+                                                    <tr onclick="getDentistaById(${dentista.id})">                                                        
+                                                        <td>${dentista.matricula}</td>
+                                                        <td>${dentista.nome}</td>
+                                                        <td>${dentista.sobrenome}</td>
+                                                        <td>${dentista.email}</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    `
+                            }
                         }
-                        listaDentista.appendChild(tbody)
-
                     }
                 )
             }
@@ -78,28 +99,90 @@ function getDentistas() {
     )
 }
 
+let dentistaId = 0
+function getDentistaById(dentistaId) {
+    fetch(`http://localhost:8080/dentista/buscaDentistaPorId?id=${dentistaId}`, requestConfiguration).then(
+        (response) => {
+            if (response.ok) {
+                response.json().then(
+                    (dentista) => {
+                        nome_dentista.innerHTML = dentista.nome
+                        console.log(dentista.nome)
+                        console.log(dentista.sobrenome)
+                        console.log(dentista.email)
+                        //console.log(dentista.logradouro_dentista)
+                    }
+                )
+            }
 
+        }
+    )
+}
+
+function getPacientes() {
+    fetch('http://localhost:8080/paciente', requestConfiguration).then(
+        (response) => {
+            if (response.ok) {
+                response.json().then(
+                    (pacientes) => {
+                        console.log("Lista com ", pacientes.length, " Pacientes")
+                        listaPaciente.innerHTML = ''
+                        for (let paciente of pacientes) {
+                            console.log(paciente.id)
+                            listaPaciente.innerHTML += `
+                                                    <tr onclick="getPacienteById(${paciente.id})">
+                                                        <td>${paciente.rg}</td>
+                                                        <td>${paciente.nome}</td>
+                                                        <td>${paciente.sobrenome}</td>
+                                                        <td>${paciente.email}</td>
+                                                        <td></td>
+                                                         <td></td>
+                                                    </tr>
+                                                    `
+                        }
+
+                    }
+                )
+            } else {
+                listaPaciente.innerHTML = templteTabelaTr
+                console.log("Lista vazia")
+            }
+        }
+    )
+}
+
+let pacienteId = 0
+function getPacienteById(pacienteId) {
+    fetch(`http://localhost:8080/paciente/buscaId?id=${pacienteId}`, requestConfiguration).then(
+        (response) => {
+            if (response.ok) {
+                response.json().then(
+                    (dentista) => {
+                        console.log(dentista.rg)
+                        console.log(dentista.logradouro_paciente)
+                    }
+                )
+            }
+
+        }
+    )
+}
 
 function modalDentistaOpen() {
     document.querySelector("#dentista")
-        .classList.add("active"),
-        getDentistas();
+        .classList.add("active");
+    getDentistas();
 }
 
 function modalDentistaClose() {
     document.querySelector("#dentista")
-        .classList.remove("active"),
-        matricula = ""
-    nome = ""
-    sobrenome = ""
-
-    //listaDentista.removeChild(tr)
-    console.log(listaDentista)
+        .classList.remove("active")
 }
 
 function modalPacienteOpen() {
     document.querySelector("#paciente")
-        .classList.add("active")
+        .classList.add("active");
+    getPacientes();
 }
 function modalPacienteClose() {
     document.querySelector("#paciente")
@@ -111,9 +194,6 @@ function modalAgenda() {
         .classList.toggle("active")
 }
 
-
-
-
 function consultasave(event) {
     event.preventDefault();
     console.log(id_dentista.value)
@@ -122,9 +202,42 @@ function consultasave(event) {
     console.log(horario.value)
 }
 
-function dentistasave(event) {
-    event.preventDefault();
+function salvarDentista() {
+    let dentista = {
+        matricula: matricula.value,
+        nome: nome_dentista.value,
+        sobrenome: sobrenome_dentista.value,
+        email: email_dentista.value,
+        endereco: {
+            rua: logradouro_dentista.value,
+            numero: numero_dentista.value,
+            bairro: bairro_dentista.value,
+            complemento: complemento_dentista.value,
+            cidade: cidade_dentista.value,
+            estado: estado_dentista.value,
+            cep: cep_dentista.value
+        }
+    }
+
+    const requestOptions = {
+        method: 'POST',
+        body: JSON.stringify(dentista),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
     console.log(matricula.value)
+    fetch('http://localhost:8080/dentista', requestOptions).then(
+        (response) => {
+            if (response.ok) {
+                console.log("Dentista cadastrado")
+            } else {
+                console.log("Erro ao cadastrar Dentista")
+            }
+            getDentistas()
+        }
+    )
 }
 
 function pacientesave(event) {
@@ -135,3 +248,9 @@ function pacientesave(event) {
 // window.addEventListener('load', () => {
 //     getDentistas();
 // })
+
+let testeId = 0
+
+function getTestId(testeId) {
+    console.log(testeId)
+}
