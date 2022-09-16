@@ -26,9 +26,16 @@ public class PacienteController {
         return new ResponseEntity(pacienteSalvo, HttpStatus.OK);
     }
 
+
     @GetMapping
-    public ResponseEntity buscarTodos(){
-        List<PacienteDTO> pacienteDTOList = service.buscarTodos();
+    public ResponseEntity  buscarTodos(){
+        List<Paciente> pacienteList = service.buscarTodos();
+        return new ResponseEntity(pacienteList,HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "filtrarPaciente", method = RequestMethod.GET)
+    public ResponseEntity buscarTodosDTO(){
+        List<PacienteDTO> pacienteDTOList = service.buscarTodosDTO();
 
         if(pacienteDTOList.isEmpty()){
             return new ResponseEntity("Nenhum paciente encontrado!",HttpStatus.NOT_FOUND);
