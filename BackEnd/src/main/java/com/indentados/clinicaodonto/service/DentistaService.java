@@ -2,6 +2,7 @@ package com.indentados.clinicaodonto.service;
 
 import com.indentados.clinicaodonto.DTO.ConsultaDTO;
 import com.indentados.clinicaodonto.DTO.DentistaDTO;
+import com.indentados.clinicaodonto.exception.ResourceNotFoundException;
 import com.indentados.clinicaodonto.model.Consulta;
 import com.indentados.clinicaodonto.model.Dentista;
 import com.indentados.clinicaodonto.repository.DentistaRepository;
@@ -46,7 +47,8 @@ public class DentistaService {
         return dentistaRepository.save(dentista);
     }
 
-    public void excluir(Long id){
+    public void excluir(Long id) throws ResourceNotFoundException {
+        dentistaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Erro ao deletar Dentista. Id informado não existe"));
         dentistaRepository.deleteById(id);
     }
 }

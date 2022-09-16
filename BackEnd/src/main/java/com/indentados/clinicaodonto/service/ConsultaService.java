@@ -1,6 +1,7 @@
 package com.indentados.clinicaodonto.service;
 
 import com.indentados.clinicaodonto.DTO.ConsultaDTO;
+import com.indentados.clinicaodonto.exception.ResourceNotFoundException;
 import com.indentados.clinicaodonto.model.Consulta;
 import com.indentados.clinicaodonto.repository.ConsultaRepository;
 import org.apache.logging.log4j.Logger;
@@ -43,7 +44,8 @@ public class ConsultaService {
         return repository.save(consulta);
      }
 
-     public void excluir(Long id) {
+     public void excluir(Long id) throws ResourceNotFoundException {
+        repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Erro ao excluir consulta. Id informado não existe"));
         repository.deleteById(id);
      }
 
