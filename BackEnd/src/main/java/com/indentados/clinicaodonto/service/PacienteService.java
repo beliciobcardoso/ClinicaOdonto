@@ -21,7 +21,11 @@ public class PacienteService {
         return repository.save(paciente);
     }
 
-    public List<PacienteDTO> buscarTodos(){
+    public List<Paciente> buscarTodos(){
+        return repository.findAll();
+    }
+
+    public List<PacienteDTO> buscarTodosDTO(){
 
         List<Paciente> listPaciente = repository.findAll();
 
