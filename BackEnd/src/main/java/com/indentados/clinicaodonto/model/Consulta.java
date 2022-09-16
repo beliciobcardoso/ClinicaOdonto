@@ -28,11 +28,11 @@ public class Consulta {
     @Column(name = "hora")
     private Timestamp horaConsulta;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_paciente", referencedColumnName = "id")
     private Paciente paciente;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_dentista", referencedColumnName = "id")
     private Dentista dentista;
 

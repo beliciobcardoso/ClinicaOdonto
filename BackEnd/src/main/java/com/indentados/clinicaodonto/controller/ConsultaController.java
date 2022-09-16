@@ -23,24 +23,33 @@ public class ConsultaController {
     ConsultaService service;
 
     @PostMapping
-    public Consulta salvarConsulta(@RequestBody Consulta consulta) {
-        return service.salvar(consulta);
+    public ResponseEntity salvarConsulta(@RequestBody Consulta consulta) {
+        return new ResponseEntity(service.salvar(consulta), HttpStatus.OK);
     }
 
     @GetMapping
-    public List<Consulta> buscarTodasConsultas() {
-        return service.buscarTodas();
+    public ResponseEntity buscarTodasConsultas() {
+        List<Consulta> consultaList = service.buscarTodas();
+
+        if(consultaList.isEmpty()){
+            return new ResponseEntity("Nenhuma consulta encontrada!", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity(consultaList, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/agendaDentista", method = RequestMethod.GET)
-    public List<ConsultaDTO> buscarTodasConsultasDTO() {
+    public ResponseEntity buscarTodasConsultasDTO() {
+        List<ConsultaDTO> consultaDTOList = service.buscarTodasDTO();
 
-        return service.buscarTodasDTO();
+        if(consultaDTOList.isEmpty()){
+            return new ResponseEntity("Nenhuma consulta encontrada", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity(consultaDTOList, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/buscaId", method = RequestMethod.GET)
     public ResponseEntity buscarConsultaPorId(@RequestParam("id") Long id) {
-        ObjectMapper mapper = new ObjectMapper();
+        //ObjectMapper mapper = new ObjectMapper();
 
         Optional<Consulta> consultaOptional = service.buscarPorId(id);
         if(consultaOptional.isEmpty()){
@@ -53,8 +62,12 @@ public class ConsultaController {
     }
 
     @PatchMapping
-    public Consulta atualizarConsulta(@RequestBody Consulta consulta) {
-        return service.atualizar(consulta);
+    public ResponseEntity atualizarConsulta(@RequestBody Consulta consulta) {
+        if(consulta.getId() == null)
+        {
+            return new ResponseEntity("Consulta não encontrada", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity(service.atualizar(consulta), HttpStatus.OK);
     }
 
     @DeleteMapping
