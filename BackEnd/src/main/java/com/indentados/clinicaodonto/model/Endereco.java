@@ -21,7 +21,7 @@ public class Endereco {
     private Long id;
 
     @Column
-    private String rua;
+    private String logradouro;
 
     @Column
     private String numero;
