@@ -19,7 +19,7 @@ let nome_paciente = document.querySelector("#dados-paciente>input#nome")
 let sobrenome_paciente = document.querySelector("#dados-paciente>input#sobrenome")
 let email_paciente = document.querySelector("#dados-paciente>input#email")
 
-let logradouro_paciente = document.querySelector("#endereco-paciente>input#lougradouro")
+let logradouro_paciente = document.querySelector("#endereco-paciente>input#logradouro")
 let numero_paciente = document.querySelector("#endereco-paciente>input#numero")
 let bairro_paciente = document.querySelector("#endereco-paciente>input#bairro")
 let complemento_paciente = document.querySelector("#endereco-paciente>input#complemento")
@@ -128,7 +128,6 @@ function getPacientes() {
                         console.log("Lista com ", pacientes.length, " Pacientes")
                         listaPaciente.innerHTML = ''
                         for (let paciente of pacientes) {
-                            console.log(paciente.id)
                             listaPaciente.innerHTML += `
                                                     <tr onclick="getPacienteById(${paciente.id})">
                                                         <td>${paciente.rg}</td>
@@ -227,7 +226,6 @@ function salvarDentista() {
         }
     }
 
-    console.log(matricula.value)
     fetch('http://localhost:8080/dentista', requestOptions).then(
         (response) => {
             if (response.ok) {
@@ -240,8 +238,46 @@ function salvarDentista() {
     )
 }
 
-function pacientesave(event) {
-    event.preventDefault();
+function salvarPaciente() {
+
+    let paciente = {
+        rg: rg.value,
+        nome: nome_paciente.value,
+        sobrenome: sobrenome_paciente.value,
+        email: email_paciente.value,
+        endereco: {
+            rua: logradouro_paciente.value,
+            numero: numero_paciente.value,
+            bairro: bairro_paciente.value,
+            complemento: complemento_paciente.value,
+            cidade: cidade_paciente.value,
+            estado: estado_paciente.value,
+            cep: cep_paciente.value
+        }
+    }
+
+    const requestOptions = {
+        method: 'POST',
+        body: JSON.stringify(paciente),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    fetch('http://localhost:8080/paciente', requestOptions).then(
+        (response) => {
+            if (response.ok) {
+                console.log("Paciente cadastrado")
+            } else {
+                console.log("Erro ao cadastrar Paciente")
+            }
+            getPacientes()
+        }
+    )
+}
+
+function salvarConsultar() {
+
     console.log(rg.value)
 }
 
