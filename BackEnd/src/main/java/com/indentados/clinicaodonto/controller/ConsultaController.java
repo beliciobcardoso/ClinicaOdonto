@@ -2,6 +2,7 @@ package com.indentados.clinicaodonto.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.indentados.clinicaodonto.DTO.ConsultaDTO;
+import com.indentados.clinicaodonto.exception.ResourceNotFoundException;
 import com.indentados.clinicaodonto.model.Consulta;
 import com.indentados.clinicaodonto.service.ConsultaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +58,7 @@ public class ConsultaController {
     }
 
     @DeleteMapping
-    public void excluirConsulta(@RequestParam("id") Long id) {
+    public void excluirConsulta(@RequestParam("id") Long id) throws ResourceNotFoundException {
         service.excluir(id);
     }
 

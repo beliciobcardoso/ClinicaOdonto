@@ -2,6 +2,7 @@ package com.indentados.clinicaodonto.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.indentados.clinicaodonto.DTO.PacienteDTO;
+import com.indentados.clinicaodonto.exception.ResourceNotFoundException;
 import com.indentados.clinicaodonto.model.Paciente;
 import com.indentados.clinicaodonto.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,12 +72,8 @@ public class PacienteController {
 
 
     @DeleteMapping
-    public ResponseEntity excluir(@RequestParam("id") Long id){
-
+    public void excluir(@RequestParam("id")Long id) throws ResourceNotFoundException {
         service.excluir(id);
-
-        return new ResponseEntity("O paciente foi excluído!",HttpStatus.OK);
-
     }
 
 }

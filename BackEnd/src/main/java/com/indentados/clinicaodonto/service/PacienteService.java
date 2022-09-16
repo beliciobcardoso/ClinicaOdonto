@@ -1,8 +1,10 @@
 package com.indentados.clinicaodonto.service;
 
 import com.indentados.clinicaodonto.DTO.PacienteDTO;
+import com.indentados.clinicaodonto.exception.ResourceNotFoundException;
 import com.indentados.clinicaodonto.model.Paciente;
 import com.indentados.clinicaodonto.repository.PacienteRepository;
+import org.hibernate.ResourceClosedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,7 +48,8 @@ public class PacienteService {
         return repository.save(paciente);
     }
 
-    public void excluir(Long id){
+    public void excluir(Long id) throws ResourceNotFoundException {
+        repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Erro ao excluir paciente. Id informado não existe"));
         repository.deleteById(id);
     }
 

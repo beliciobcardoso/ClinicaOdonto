@@ -3,6 +3,7 @@ package com.indentados.clinicaodonto.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.indentados.clinicaodonto.DTO.ConsultaDTO;
 import com.indentados.clinicaodonto.DTO.DentistaDTO;
+import com.indentados.clinicaodonto.exception.ResourceNotFoundException;
 import com.indentados.clinicaodonto.model.Dentista;
 import com.indentados.clinicaodonto.model.Pessoa;
 import com.indentados.clinicaodonto.service.DentistaService;
@@ -64,13 +65,7 @@ public class DentistaController {
     }
 
     @DeleteMapping
-    public ResponseEntity excluirDentista(@RequestParam("id") Long id){
-        ResponseEntity rs = buscarDentistaPorId(id);
-        if(rs.getStatusCodeValue() == 200)
-        {
-            dentistaService.excluir(id);
-            return rs = new ResponseEntity(HttpStatus.OK);
-        }
-        return rs = new ResponseEntity("Dentista não encontrado para deleção",HttpStatus.NOT_FOUND);
+    public void excluir(@RequestParam("id")Long id) throws ResourceNotFoundException{
+        dentistaService.excluir(id);
     }
 }
