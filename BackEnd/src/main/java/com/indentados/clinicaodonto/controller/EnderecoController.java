@@ -1,4 +1,4 @@
-package com.indentados.clinicaodonto.controller;
+package com.indentados.clinicaodonto.model.controller;
 
 
 import com.indentados.clinicaodonto.model.Endereco;
