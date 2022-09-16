@@ -30,13 +30,13 @@ public class EnderecoController {
     @GetMapping
     public ResponseEntity buscarTodos(){
 
-        List<Endereco> enderecoDTOList = service.buscarTodos();
+        List<Endereco> enderecoList = service.buscarTodos();
 
-        if(enderecoDTOList.isEmpty()){
-            return new ResponseEntity("Nenhum endereço encontrado!",HttpStatus.OK);
+        if(enderecoList.isEmpty()){
+            return new ResponseEntity("Nenhum endereço encontrado!",HttpStatus.NOT_FOUND);
         }
         
-        return new ResponseEntity(enderecoDTOList, HttpStatus.OK);
+        return new ResponseEntity(enderecoList, HttpStatus.OK);
     }
 
 
