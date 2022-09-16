@@ -1,4 +1,4 @@
-package com.indentados.clinicaodonto.model.controller;
+package com.indentados.clinicaodonto.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.indentados.clinicaodonto.DTO.ConsultaDTO;
