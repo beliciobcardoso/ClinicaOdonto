@@ -55,9 +55,13 @@ public class EnderecoController {
 
 
     @PatchMapping
-    public ResponseEntity atualizar(@RequestBody Endereco endereco)
-    {
-        Endereco enderecoAtualizado = service.atualizar(endereco);
+    public ResponseEntity atualizar(@RequestBody Endereco endereco) {
+        if(endereco.getId() == null)
+        {
+            return new ResponseEntity("Endereço não encontrado", HttpStatus.NOT_FOUND);
+        }
+            Endereco enderecoAtualizado = service.atualizar(endereco);
+
         return new ResponseEntity(enderecoAtualizado, HttpStatus.OK);
     }
 
