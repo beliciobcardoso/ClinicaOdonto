@@ -1,3 +1,5 @@
+const url = "http://localhost:8080"
+
 let listaDentista = document.querySelector('#data-dentista tbody')
 let listaPaciente = document.querySelector('#data-paciente tbody')
 
@@ -68,7 +70,7 @@ const templteTabelaTr = `
                 `
 
 function getDentistas() {
-    fetch('http://localhost:8080/dentista', requestConfiguration).then(
+    fetch(url + '/dentista', requestConfiguration).then(
         (response) => {
             if (response.ok) {
                 response.json().then(
@@ -101,7 +103,7 @@ function getDentistas() {
 
 let dentistaId = 0
 function getDentistaById(dentistaId) {
-    fetch(`http://localhost:8080/dentista/buscaDentistaPorId?id=${dentistaId}`, requestConfiguration).then(
+    fetch(url + `/dentista/buscaDentistaPorId?id=${dentistaId}`, requestConfiguration).then(
         (response) => {
             if (response.ok) {
                 response.json().then(
@@ -120,7 +122,7 @@ function getDentistaById(dentistaId) {
 }
 
 function getPacientes() {
-    fetch('http://localhost:8080/paciente', requestConfiguration).then(
+    fetch(url + '/paciente', requestConfiguration).then(
         (response) => {
             if (response.ok) {
                 response.json().then(
@@ -152,7 +154,7 @@ function getPacientes() {
 
 let pacienteId = 0
 function getPacienteById(pacienteId) {
-    fetch(`http://localhost:8080/paciente/buscaId?id=${pacienteId}`, requestConfiguration).then(
+    fetch(url + `/paciente/buscaId?id=${pacienteId}`, requestConfiguration).then(
         (response) => {
             if (response.ok) {
                 response.json().then(
@@ -226,7 +228,7 @@ function salvarDentista() {
         }
     }
 
-    fetch('http://localhost:8080/dentista', requestOptions).then(
+    fetch(url + '/dentista', requestOptions).then(
         (response) => {
             if (response.ok) {
                 console.log("Dentista cadastrado")
@@ -264,7 +266,7 @@ function salvarPaciente() {
         }
     }
 
-    fetch('http://localhost:8080/paciente', requestOptions).then(
+    fetch(url + '/paciente', requestOptions).then(
         (response) => {
             if (response.ok) {
                 console.log("Paciente cadastrado")
@@ -277,7 +279,6 @@ function salvarPaciente() {
 }
 
 function salvarConsultar() {
-
     console.log(rg.value)
 }
 
