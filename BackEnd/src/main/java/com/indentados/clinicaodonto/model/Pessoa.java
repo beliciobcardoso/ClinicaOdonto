@@ -21,16 +21,16 @@ public abstract class Pessoa {
     protected Long id;
 
     @Column
-    private String nome;
+    protected String nome;
     @Column
-    private String sobrenome;
+    protected String sobrenome;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_endereco")
-    private Endereco endereco;
+    protected Endereco endereco;
 
     @Column
-    private String email;
+    protected String email;
     @Column(name = "data_de_cadastro")
-    private Timestamp dataCadastro = Timestamp.valueOf(LocalDateTime.now());
+    protected Timestamp dataCadastro = Timestamp.valueOf(LocalDateTime.now());
 }

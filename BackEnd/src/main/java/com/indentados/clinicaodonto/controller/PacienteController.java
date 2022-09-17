@@ -63,13 +63,15 @@ public class PacienteController {
 
 
     @PatchMapping
-    public ResponseEntity atualizar(@RequestBody Paciente paciente){
+    public ResponseEntity atualizar(@RequestBody Paciente paciente)
+    {
+        if(paciente.getId() == null){
+            return new ResponseEntity("Paciente não encontrado", HttpStatus.NOT_FOUND);
+        }
         Paciente pacienteAtualizado = service.atualizar(paciente);
         return new ResponseEntity(pacienteAtualizado,HttpStatus.OK);
 
     }
-
-
 
     @DeleteMapping
     public void excluir(@RequestParam("id")Long id) throws ResourceNotFoundException {
