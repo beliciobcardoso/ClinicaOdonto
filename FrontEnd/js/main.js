@@ -2,6 +2,7 @@ const url = "http://localhost:8080"
 
 let listaDentista = document.querySelector('#data-dentista tbody')
 let listaPaciente = document.querySelector('#data-paciente tbody')
+let listaConsulta = document.querySelector("article#listaConsulta")
 
 let matricula = document.querySelector("#dados-dentista>input#matricula")
 let nome_dentista = document.querySelector("#dados-dentista>input#nome")
@@ -67,6 +68,20 @@ const templteTabelaTr = `
                     <td></td>
                 </tr>
                 `
+
+const templteListaConsulta = `
+            <section>
+            <div class="status"><p></p></div>
+            <div class="conteiner">
+            <p class="doutor"></p>
+            <div>
+                <p class="hora"></p>
+                <p class="data"></p>
+            </div>
+            <p class="paciente"></p>
+            </div>
+            </section>
+`
 
 function getDentistas() {
     fetch(url + '/dentista', requestConfiguration).then(
@@ -215,6 +230,37 @@ function getConsultaDentistas() {
     )
 }
 
+function getConsulta() {
+    fetch(url + '/consulta', requestConfiguration).then(
+        (response) => {
+            if (response.ok) {
+                response.json().then(
+                    (consultas) => {
+                        listaConsulta.innerHTML = ''
+                        for (let consulta of consultas) {
+                            listaConsulta.innerHTML += `
+                            <section>
+                            <div class="status"><p></p></div>
+                            <div class="conteiner">
+                              <p class="doutor">Dr.(Dra.): ${consulta.dentista.nome} ${consulta.dentista.sobrenome}</p>
+                              <div>
+                                <p class="hora">${consulta.horaConsulta} Hs</p>
+                                <p class="data">${consulta.dataConsulta}</p>
+                              </div>
+                              <p class="paciente">Paciente: ${consulta.paciente.nome} ${consulta.paciente.sobrenome}</p>
+                            </div>
+                          </section>`
+                        }
+                    }
+                )
+            } else {
+                listaConsulta.innerHTML = templteListaConsulta
+                console.log("Lista vazia")
+            }
+        }
+    )
+}
+
 function modalDentistaOpen() {
     document.querySelector("#dentista")
         .classList.add("active");
@@ -351,12 +397,6 @@ function salvarConsultar(event) {
     )
 }
 
-// window.addEventListener('load', () => {
-//     getDentistas();
-// })
-
-let testeId = 0
-
-function getTestId(testeId) {
-    console.log(testeId)
-}
+window.addEventListener('load', () => {
+    getConsulta();
+})
