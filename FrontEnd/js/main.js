@@ -245,7 +245,7 @@ function getConsulta() {
                               <p class="doutor">Dr.(Dra.): ${consulta.dentista.nome} ${consulta.dentista.sobrenome}</p>
                               <div>
                                 <p class="hora">${consulta.horaConsulta} Hs</p>
-                                <p class="data">${consulta.dataConsulta}</p>
+                                <p class="data">${formatDate(consulta.dataConsulta)}</p>
                               </div>
                               <p class="paciente">Paciente: ${consulta.paciente.nome} ${consulta.paciente.sobrenome}</p>
                             </div>
@@ -395,6 +395,15 @@ function salvarConsultar(event) {
             }
         }
     )
+}
+
+function formatDate(data) {
+    let ArrData = data.replaceAll("-", "")
+    let mes = ArrData.slice(4, 6)
+    let ano = ArrData.slice(0, 4)
+    let dia = ArrData.slice(6, 8)
+    let dataFormatada = `${dia}/${mes}/${ano}`
+    return dataFormatada
 }
 
 window.addEventListener('load', () => {
