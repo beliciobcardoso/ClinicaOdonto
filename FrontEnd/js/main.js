@@ -42,6 +42,13 @@ let requestConfiguration = {
     },
 };
 
+const templteSelect = `
+<option ></option>
+<option ></option>
+<option ></option>
+<option ></option>
+                `
+
 const templteTabelaTr = `
                 <tr>
                     <td></td>
@@ -81,7 +88,7 @@ const templteListaConsulta = `
             <p class="paciente"></p>
             </div>
             </section>
-`
+                `
 
 function getDentistas() {
     fetch(url + '/dentista', requestConfiguration).then(
@@ -183,13 +190,6 @@ function getPacienteById(pacienteId) {
     )
 }
 
-const templteSelect = `
-<option ></option>
-<option ></option>
-<option ></option>
-<option ></option>
-`
-
 function getConsultaPacientes() {
     fetch(url + '/paciente', requestConfiguration).then(
         (response) => {
@@ -240,8 +240,8 @@ function getConsulta() {
                         for (let consulta of consultas) {
                             listaConsulta.innerHTML += `
                             <section>
-                            <div class="status"><p></p></div>
-                            <div class="conteiner">
+                            <div class="status" id="status" onclick="statusConsulta(${consulta.id})"><p></p></div>
+                            <div class="conteiner" id="conteiner">
                               <p class="doutor">Dr.(Dra.): ${consulta.dentista.nome} ${consulta.dentista.sobrenome}</p>
                               <div>
                                 <p class="hora">${consulta.horaConsulta} Hs</p>
@@ -277,6 +277,7 @@ function modalPacienteOpen() {
         .classList.add("active");
     getPacientes();
 }
+
 function modalPacienteClose() {
     document.querySelector("#paciente")
         .classList.remove("active")
@@ -395,6 +396,14 @@ function salvarConsultar(event) {
             }
         }
     )
+}
+
+function statusConsulta(idConsulta) {
+    document.querySelector("section>#status")
+        .classList.toggle("statusOff");
+    document.querySelector("section>#conteiner")
+        .classList.toggle("conteinerOff");
+    console.log(idConsulta)
 }
 
 function formatDate(data) {

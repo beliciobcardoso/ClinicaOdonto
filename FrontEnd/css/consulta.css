@@ -115,6 +115,12 @@ section .status {
   height: 60px;
   background-color: #008000;
   border-radius: 30px;
+  cursor: pointer;
+}
+
+section .statusOff {
+  background-color: #bbbbbb;
+  border: 3px solid #919191;
 }
 
 section .conteiner {
@@ -125,6 +131,12 @@ section .conteiner {
   height: 70px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+}
+
+section .conteinerOff {
+  background-color: #bbbbbb;
+  border: 3px solid #919191;
+  color: #ffffff;
 }
 
 section .conteiner p {
