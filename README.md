@@ -10,8 +10,7 @@ cirurgico, registro e mercação de novas consultas)).
 - Adminitração de sistema de sistema de consulta (É possível que o paciente seja atribuido a uma consulta, com um dentista em um horário definido e marcado previamente 
 sob data e hora marcada(dateTime));
 
-<img src="/nidiodolfini/Microsoft-Integration-and-Azure-Stencils-Pack-for-Visio/raw/master/media/BizTalk-Microsoft-Integration-Azure-Stencils-Pack.png" 
-alt="Microsoft-Integration-Azure-Stencils-Pack" style="max-width: 100%;">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMP0wZTwhLady0zN98r0q-ssaG8n8C_tIoqmyUVE7w&s"  alt="Microsoft-Integration-Azure-Stencils-Pack" style="max-width: 100%;">
 
 
 # Requisitos Técnicos
