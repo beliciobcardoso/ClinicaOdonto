@@ -1,6 +1,5 @@
 package com.indentados.clinicaodonto.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.indentados.clinicaodonto.DTO.ConsultaDTO;
 import com.indentados.clinicaodonto.exception.ResourceNotFoundException;
 import com.indentados.clinicaodonto.model.Consulta;
@@ -10,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,8 +69,11 @@ public class ConsultaController {
     }
 
     @DeleteMapping
-    public void excluirConsulta(@RequestParam("id") Long id) throws ResourceNotFoundException {
+    public ResponseEntity excluirConsulta(@RequestParam("id") Long id) throws ResourceNotFoundException {
         service.excluir(id);
+        //daria pra fazer uma validação ou um catch naquela exception aqui, pra retornar not found, caso não achasse o id
+        return new ResponseEntity("Paciente excluído com sucesso", HttpStatus.OK);
+    
     }
 
 }

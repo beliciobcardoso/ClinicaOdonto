@@ -74,8 +74,11 @@ public class PacienteController {
     }
 
     @DeleteMapping
-    public void excluir(@RequestParam("id")Long id) throws ResourceNotFoundException {
+    public ResponseEntity excluir(@RequestParam("id")Long id) throws ResourceNotFoundException {
         service.excluir(id);
+        //daria pra fazer uma validação ou um catch naquela exception aqui ou na service, pra retornar not found, caso não achasse o id
+        //--Teteu
+        return new ResponseEntity("Paciente excluído com sucesso", HttpStatus.OK);
     }
 
 }

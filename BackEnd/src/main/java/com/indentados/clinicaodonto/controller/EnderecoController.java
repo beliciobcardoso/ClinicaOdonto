@@ -50,20 +50,18 @@ public class EnderecoController {
         {
             return new ResponseEntity("Endereço não encontrado", HttpStatus.NOT_FOUND);
         }
-        
         return new ResponseEntity(enderecoOptional.get(), HttpStatus.OK);
     }
 
 
     @PatchMapping
     public ResponseEntity atualizar(@RequestBody Endereco endereco) {
-        if(endereco.getId() == null)
+        if(endereco.getId() == null || service.buscarPorId(endereco.getId()).isEmpty())
         {
             return new ResponseEntity("Endereço não encontrado", HttpStatus.NOT_FOUND);
         }
-            Endereco enderecoAtualizado = service.atualizar(endereco);
-
-        return new ResponseEntity(enderecoAtualizado, HttpStatus.OK);
+        
+        return new ResponseEntity(service.atualizar(endereco), HttpStatus.OK);
     }
 
     @DeleteMapping
