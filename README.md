@@ -10,7 +10,7 @@ cirurgico, registro e mercação de novas consultas)).
 - Adminitração de sistema de sistema de consulta (É possível que o paciente seja atribuido a uma consulta, com um dentista em um horário definido e marcado previamente 
 sob data e hora marcada(dateTime));
 
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMP0wZTwhLady0zN98r0q-ssaG8n8C_tIoqmyUVE7w&s"  alt="Microsoft-Integration-Azure-Stencils-Pack" style="max-width: 100%;">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMP0wZTwhLady0zN98r0q-ssaG8n8C_tIoqmyUVE7w&s"  alt="Microsoft-Integration-Azure-Stencils-Pack" style="max-width: 100%; height: 100%">
 
 
 # Requisitos Técnicos
@@ -24,7 +24,5 @@ sob data e hora marcada(dateTime));
 opções:HTML +JavaScript ou React para a visualização;
 
 # Avanços
--
--
--
+- O trabalho contou com uma excelente metodologia Ágil por meio do Kanbam para organização das Sprints da equipe  e seu respectivo trabalho e organização em Sprints e tarefas  em Todo/ doing e Done em que a equipe pode trabalhar de forma produtiva, conduzente e bem produtiva
 # Sprints Realizadas
