@@ -2,6 +2,7 @@ const url = "http://localhost:8080"
 
 let listaDentista = document.querySelector('#data-dentista tbody')
 let listaPaciente = document.querySelector('#data-paciente tbody')
+let listaConsulta = document.querySelector("article#listaConsulta")
 
 let matricula = document.querySelector("#dados-dentista>input#matricula")
 let nome_dentista = document.querySelector("#dados-dentista>input#nome")
@@ -41,6 +42,13 @@ let requestConfiguration = {
     },
 };
 
+const templteSelect = `
+<option ></option>
+<option ></option>
+<option ></option>
+<option ></option>
+                `
+
 const templteTabelaTr = `
                 <tr>
                     <td></td>
@@ -66,6 +74,20 @@ const templteTabelaTr = `
                     <td></td>
                     <td></td>
                 </tr>
+                `
+
+const templteListaConsulta = `
+            <section>
+            <div class="status"><p></p></div>
+            <div class="conteiner">
+            <p class="doutor"></p>
+            <div>
+                <p class="hora"></p>
+                <p class="data"></p>
+            </div>
+            <p class="paciente"></p>
+            </div>
+            </section>
                 `
 
 function getDentistas() {
@@ -168,13 +190,6 @@ function getPacienteById(pacienteId) {
     )
 }
 
-const templteSelect = `
-<option ></option>
-<option ></option>
-<option ></option>
-<option ></option>
-`
-
 function getConsultaPacientes() {
     fetch(url + '/paciente', requestConfiguration).then(
         (response) => {
@@ -215,6 +230,37 @@ function getConsultaDentistas() {
     )
 }
 
+function getConsulta() {
+    fetch(url + '/consulta', requestConfiguration).then(
+        (response) => {
+            if (response.ok) {
+                response.json().then(
+                    (consultas) => {
+                        listaConsulta.innerHTML = ''
+                        for (let consulta of consultas) {
+                            listaConsulta.innerHTML += `
+                            <section>
+                            <div class="status" id="status" onclick="statusConsulta(${consulta.id})"><p></p></div>
+                            <div class="conteiner" id="conteiner">
+                              <p class="doutor">Dr.(Dra.): ${consulta.dentista.nome} ${consulta.dentista.sobrenome}</p>
+                              <div>
+                                <p class="hora">${consulta.horaConsulta} Hs</p>
+                                <p class="data">${formatDate(consulta.dataConsulta)}</p>
+                              </div>
+                              <p class="paciente">Paciente: ${consulta.paciente.nome} ${consulta.paciente.sobrenome}</p>
+                            </div>
+                          </section>`
+                        }
+                    }
+                )
+            } else {
+                listaConsulta.innerHTML = templteListaConsulta
+                console.log("Lista vazia")
+            }
+        }
+    )
+}
+
 function modalDentistaOpen() {
     document.querySelector("#dentista")
         .classList.add("active");
@@ -231,6 +277,7 @@ function modalPacienteOpen() {
         .classList.add("active");
     getPacientes();
 }
+
 function modalPacienteClose() {
     document.querySelector("#paciente")
         .classList.remove("active")
@@ -351,12 +398,23 @@ function salvarConsultar(event) {
     )
 }
 
-// window.addEventListener('load', () => {
-//     getDentistas();
-// })
-
-let testeId = 0
-
-function getTestId(testeId) {
-    console.log(testeId)
+function statusConsulta(idConsulta) {
+    document.querySelector("section>#status")
+        .classList.toggle("statusOff");
+    document.querySelector("section>#conteiner")
+        .classList.toggle("conteinerOff");
+    console.log(idConsulta)
 }
+
+function formatDate(data) {
+    let ArrData = data.replaceAll("-", "")
+    let mes = ArrData.slice(4, 6)
+    let ano = ArrData.slice(0, 4)
+    let dia = ArrData.slice(6, 8)
+    let dataFormatada = `${dia}/${mes}/${ano}`
+    return dataFormatada
+}
+
+window.addEventListener('load', () => {
+    getConsulta();
+})
