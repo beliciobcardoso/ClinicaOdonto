@@ -44,8 +44,25 @@ public class PacienteController {
         return new ResponseEntity<>(pacienteDTOList,HttpStatus.OK);
     }
 
+
     @RequestMapping(value = "/buscaId", method = RequestMethod.GET)
     public ResponseEntity buscarPorId(@RequestParam("id") Long id){
+
+        Optional<Paciente> pacienteOptional = service.buscarPorId(id);
+
+        if(pacienteOptional.isEmpty()){
+            return new ResponseEntity("Paciente não encontrado", HttpStatus.NOT_FOUND);
+        }
+
+        Paciente paciente = pacienteOptional.get();
+
+        return new ResponseEntity(paciente, HttpStatus.OK);
+    }
+
+
+
+    @RequestMapping(value = "/buscaIdDTO", method = RequestMethod.GET)
+    public ResponseEntity buscarPorIdDTO(@RequestParam("id") Long id){
         ObjectMapper mapper = new ObjectMapper();
 
         Optional<Paciente> pacienteOptional = service.buscarPorId(id);
@@ -55,6 +72,7 @@ public class PacienteController {
         }
 
         Paciente paciente = pacienteOptional.get();
+
         PacienteDTO pacienteDTO = mapper.convertValue(paciente, PacienteDTO.class);
 
         return new ResponseEntity(pacienteDTO, HttpStatus.OK);
@@ -75,10 +93,16 @@ public class PacienteController {
 
     @DeleteMapping
     public ResponseEntity excluir(@RequestParam("id")Long id) throws ResourceNotFoundException {
-        service.excluir(id);
-        //daria pra fazer uma validação ou um catch naquela exception aqui ou na service, pra retornar not found, caso não achasse o id
-        //--Teteu
-        return new ResponseEntity("Paciente excluído com sucesso", HttpStatus.OK);
+
+        try {
+            service.excluir(id);
+            return new ResponseEntity("Paciente excluído com sucesso", HttpStatus.OK);
+
+        }catch (ResourceNotFoundException e){
+
+            throw new ResourceNotFoundException("Paciente não encontrado");
+        }
+
     }
 
 }
