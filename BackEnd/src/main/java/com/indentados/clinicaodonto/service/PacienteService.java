@@ -44,6 +44,7 @@ public class PacienteService {
         return repository.findById(id);
     }
 
+
     public Paciente atualizar(Paciente paciente){
         return repository.save(paciente);
     }
