@@ -1,6 +1,7 @@
 package com.indentados.clinicaodonto.controller;
 
 
+import com.indentados.clinicaodonto.exception.ResourceNotFoundException;
 import com.indentados.clinicaodonto.model.Endereco;
 import com.indentados.clinicaodonto.service.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,25 +50,22 @@ public class EnderecoController {
         {
             return new ResponseEntity("Endereço não encontrado", HttpStatus.NOT_FOUND);
         }
-        
         return new ResponseEntity(enderecoOptional.get(), HttpStatus.OK);
     }
 
 
     @PatchMapping
     public ResponseEntity atualizar(@RequestBody Endereco endereco) {
-        if(endereco.getId() == null)
+        if(endereco.getId() == null || service.buscarPorId(endereco.getId()).isEmpty())
         {
             return new ResponseEntity("Endereço não encontrado", HttpStatus.NOT_FOUND);
         }
-            Endereco enderecoAtualizado = service.atualizar(endereco);
-
-        return new ResponseEntity(enderecoAtualizado, HttpStatus.OK);
+        
+        return new ResponseEntity(service.atualizar(endereco), HttpStatus.OK);
     }
 
     @DeleteMapping
-    public ResponseEntity excluir(@RequestParam("id") Long id)
-    {
+    public ResponseEntity excluir(@RequestParam("id") Long id) throws ResourceNotFoundException {
         service.excluir(id);
         return new ResponseEntity("O endereço foi excluído!",HttpStatus.OK);
     }
