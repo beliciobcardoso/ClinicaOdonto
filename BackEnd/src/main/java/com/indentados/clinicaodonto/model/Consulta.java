@@ -1,14 +1,14 @@
 package com.indentados.clinicaodonto.model;
 
 import java.sql.Date;
-import java.sql.Timestamp;
+import java.sql.Time;
+
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.*;
 
 @Getter
 @Setter
@@ -26,7 +26,7 @@ public class Consulta {
     private Date dataConsulta;
 
     @Column(name = "hora")
-    private Timestamp horaConsulta;
+    private Time horaConsulta;
 
     @OneToOne
     @JoinColumn(name = "id_paciente", referencedColumnName = "id")

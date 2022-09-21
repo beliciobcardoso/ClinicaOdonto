@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 
 @Getter
@@ -22,7 +23,7 @@ public class ConsultaDTO {
 
     private Date dataConsulta;
 
-    private Timestamp horaConsulta;
+    private Time horaConsulta;
 
     private Dentista dentista;
 

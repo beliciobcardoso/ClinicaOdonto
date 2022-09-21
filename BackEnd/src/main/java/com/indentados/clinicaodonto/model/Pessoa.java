@@ -25,12 +25,12 @@ public abstract class Pessoa {
     @Column
     protected String sobrenome;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_endereco")
-    protected Endereco endereco;
-
     @Column
     protected String email;
     @Column(name = "data_de_cadastro")
     protected Timestamp dataCadastro = Timestamp.valueOf(LocalDateTime.now());
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_endereco")
+    protected Endereco endereco;
 }

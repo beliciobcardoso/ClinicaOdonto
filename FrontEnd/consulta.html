@@ -13,7 +13,7 @@
       <div class="logo"><p>LOGO</p></div>
       <nav>
         <ul class="menu">
-          <li><a href="#" onclick="modalAgenda()">CRIAR AGENDA</a></li>
+          <li><a href="#" onclick="modalAgendaOpen()">CRIAR AGENDA</a></li>
           <li>
             <a href="#">CADASTRA</a>
             <ul class="dropdown">
@@ -29,42 +29,7 @@
       </div>
     </header>
 
-    <article>
-      <section>
-        <div class="status"><p></p></div>
-        <div class="conteiner">
-          <p class="doutor">Dr. Fulano de Tal</p>
-          <div>
-            <p class="hora">10:30</p>
-            <p class="data">29/08/2022</p>
-          </div>
-          <p class="paciente">Sr. Siclano de Tal da silva sauro</p>
-        </div>
-      </section>
-      <section>
-        <div class="status"><p></p></div>
-        <div class="conteiner">
-          <p class="doutor">Dr. Fulano de Tal da silva</p>
-          <div>
-            <p class="hora">10:30</p>
-            <p class="data">29/08/2022</p>
-          </div>
-          <p class="paciente">Sr. Siclano de Tal</p>
-        </div>
-      </section>
-      <section>
-        <div class="status"><p></p></div>
-        <div class="conteiner">
-          <p class="doutor">Dr. Fulano de Tal da silva sauro</p>
-          <div>
-            <p class="hora">10:30</p>
-            <p class="data">29/08/2022</p>
-          </div>
-
-          <p class="paciente">Sr. Siclano de Tal</p>
-        </div>
-      </section>
-    </article>
+    <article id="listaConsulta"></article>
 
     <div class="modal-overlay" id="dentista">
       <div class="modal overflow">
@@ -189,24 +154,14 @@
       <div class="modal">
         <div id="form">
           <h2>Agenda Consulta</h2>
-          <form action="" onsubmit="consultasave(event)">
+          <form action="" onsubmit="salvarConsultar(event)">
             <div class="input-group" id="input-agenda">
               <fieldset>
                 <legend>Criar Consulta</legend>
-                <label class="sr-only" for="dentista">Dentista</label>
-                <select name="dentista" id="dentista">
-                  <option value="Dr Lucas">Dr Lucas</option>
-                  <option value="Dra Patricia" selected>Dra Patricia</option>
-                  <option value="Dra Rosana">Dra Rosana</option>
-                  <option value="Dr Belicio">Dr Belicio</option>
-                </select>
-                <label class="sr-only" for="paciente">Paciente</label>
-                <select name="paciente" id="paciente">
-                  <option value="Lucas de Jesus">Lucas de Jesus</option>
-                  <option value="Patricia Asano" selected>Patricia Asano</option>
-                  <option value="Rosana Pereira">Rosana Pereira</option>
-                  <option value="Belicio Cardoso">Belicio Cardoso</option>
-                </select>
+                <label class="sr-only" for="consulta_dentista">Dentista</label>
+                <select name="consulta_dentista" id="consulta_dentista"></select>
+                <label class="sr-only" for="consulta_paciente">Paciente</label>
+                <select name="consulta_paciente" id="consulta_paciente"></select>
                 <label class="sr-only" for="data">Data</label>
                 <input type="date" name="data" id="data" placeholder="Data" />
                 <label class="sr-only" for="horario">Horario</label>
@@ -215,7 +170,7 @@
             </div>
             <div class="input-group actions">
               <button>Salvar</button>
-              <a href="#" onclick="modalAgenda()" class="button cancel">Cancelar</a>
+              <a href="#" onclick="modalAgendaClose()" class="button cancel">Cancelar</a>
             </div>
           </form>
         </div>

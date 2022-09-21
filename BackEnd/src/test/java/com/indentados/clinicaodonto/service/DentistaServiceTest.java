@@ -25,7 +25,7 @@ class DentistaServiceTest
 	void fazAntes()
 	{
 		//Antes de cada teste, cria um novo dentista.
-		d = new Dentista("Nome", "Sobrenome", new Endereco(null, "rua", "num", "complemento", "bairro", "cidade", "estado", "cep"), "email@email.com", "1");
+		d = new Dentista("Nome", "Sobrenome", "email@email.com",  new Endereco(null, "rua", "num", "complemento", "bairro", "cidade", "estado", "cep"), "1");
 	}
 
 	@Test
@@ -51,7 +51,7 @@ class DentistaServiceTest
 	{
 		//salva 2 novos dentistas e em seguita tenta buscá-los. Passará no teste, caso retorne mais de um dentista.
 		d = dentistaService.salvar(d);
-		Dentista d2 = new Dentista("Nome2", "Sobrenome2", new Endereco(null, "rua", "num", "complemento", "bairro", "cidade", "estado", "cep"), "email@email.com", "1");
+		Dentista d2 = new Dentista("Nome2", "Sobrenome2","email@email.com",new Endereco(null, "rua", "num", "complemento", "bairro", "cidade", "estado", "cep"),  "1");
 		
 		dentistaService.salvar(d2);
 		

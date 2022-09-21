@@ -1,5 +1,8 @@
+const url = "http://localhost:8080"
+
 let listaDentista = document.querySelector('#data-dentista tbody')
 let listaPaciente = document.querySelector('#data-paciente tbody')
+let listaConsulta = document.querySelector("article#listaConsulta")
 
 let matricula = document.querySelector("#dados-dentista>input#matricula")
 let nome_dentista = document.querySelector("#dados-dentista>input#nome")
@@ -27,9 +30,8 @@ let cidade_paciente = document.querySelector("#endereco-paciente>input#cidade")
 let estado_paciente = document.querySelector("#endereco-paciente>input#estado")
 let cep_paciente = document.querySelector("#endereco-paciente>input#cep")
 
-
-let id_dentista = document.querySelector("select#dentista")
-let id_paciente = document.querySelector("select#paciente")
+let selectDentista = document.querySelector("select#consulta_dentista")
+let selectPaciente = document.querySelector("select#consulta_paciente")
 let data = document.querySelector("input#data")
 let horario = document.querySelector("input#horario")
 
@@ -39,6 +41,13 @@ let requestConfiguration = {
         'Content-Type': 'application/json'
     },
 };
+
+const templteSelect = `
+<option ></option>
+<option ></option>
+<option ></option>
+<option ></option>
+                `
 
 const templteTabelaTr = `
                 <tr>
@@ -67,8 +76,22 @@ const templteTabelaTr = `
                 </tr>
                 `
 
+const templteListaConsulta = `
+            <section>
+            <div class="status"><p></p></div>
+            <div class="conteiner">
+            <p class="doutor"></p>
+            <div>
+                <p class="hora"></p>
+                <p class="data"></p>
+            </div>
+            <p class="paciente"></p>
+            </div>
+            </section>
+                `
+
 function getDentistas() {
-    fetch('http://localhost:8080/dentista', requestConfiguration).then(
+    fetch(url + '/dentista', requestConfiguration).then(
         (response) => {
             if (response.ok) {
                 response.json().then(
@@ -101,7 +124,7 @@ function getDentistas() {
 
 let dentistaId = 0
 function getDentistaById(dentistaId) {
-    fetch(`http://localhost:8080/dentista/buscaDentistaPorId?id=${dentistaId}`, requestConfiguration).then(
+    fetch(url + `/dentista/buscaDentistaPorId?id=${dentistaId}`, requestConfiguration).then(
         (response) => {
             if (response.ok) {
                 response.json().then(
@@ -120,7 +143,7 @@ function getDentistaById(dentistaId) {
 }
 
 function getPacientes() {
-    fetch('http://localhost:8080/paciente', requestConfiguration).then(
+    fetch(url + '/paciente', requestConfiguration).then(
         (response) => {
             if (response.ok) {
                 response.json().then(
@@ -152,7 +175,7 @@ function getPacientes() {
 
 let pacienteId = 0
 function getPacienteById(pacienteId) {
-    fetch(`http://localhost:8080/paciente/buscaId?id=${pacienteId}`, requestConfiguration).then(
+    fetch(url + `/paciente/buscaId?id=${pacienteId}`, requestConfiguration).then(
         (response) => {
             if (response.ok) {
                 response.json().then(
@@ -163,6 +186,77 @@ function getPacienteById(pacienteId) {
                 )
             }
 
+        }
+    )
+}
+
+function getConsultaPacientes() {
+    fetch(url + '/paciente', requestConfiguration).then(
+        (response) => {
+            if (response.ok) {
+                response.json().then(
+                    (pacientes) => {
+                        selectPaciente.innerHTML = '<option value="" selected>Paciente</option>'
+                        for (let paciente of pacientes) {
+                            selectPaciente.innerHTML += `<option value="${paciente.id}">${paciente.nome} ${paciente.sobrenome}</option>`
+                        }
+                    }
+                )
+            } else {
+                selectPaciente.innerHTML = templteSelect
+                console.log("Lista vazia")
+            }
+        }
+    )
+}
+
+function getConsultaDentistas() {
+    fetch(url + '/dentista', requestConfiguration).then(
+        (response) => {
+            if (response.ok) {
+                response.json().then(
+                    (dentistas) => {
+                        selectDentista.innerHTML = '<option value="" selected>Dentista</option>'
+                        for (let dentista of dentistas) {
+                            selectDentista.innerHTML += `<option value="${dentista.id}">${dentista.nome} ${dentista.sobrenome}</option>`
+                        }
+                    }
+                )
+            } else {
+                selectDentista.innerHTML = templteSelect
+                console.log("Lista vazia")
+            }
+        }
+    )
+}
+
+function getConsulta() {
+    fetch(url + '/consulta', requestConfiguration).then(
+        (response) => {
+            if (response.ok) {
+                response.json().then(
+                    (consultas) => {
+                        listaConsulta.innerHTML = ''
+                        for (let consulta of consultas) {
+                            listaConsulta.innerHTML += `
+                            <section>
+                            <div class="status" id="status" onclick="statusConsulta(${consulta.id})"><p></p></div>
+                            <div class="conteiner" id="conteiner">
+                              <p class="doutor">Dr.(Dra.): ${consulta.dentista.nome} ${consulta.dentista.sobrenome}</p>
+                              <div>
+                                <p class="hora">${consulta.horaConsulta} Hs</p>
+                                <p class="data">${formatDate(consulta.dataConsulta)}</p>
+                              </div>
+                              <p class="paciente">Paciente: ${consulta.paciente.nome} ${consulta.paciente.sobrenome}</p>
+                            </div>
+                          </section>`
+                        }
+                    }
+                )
+            } else {
+                listaConsulta.innerHTML = templteListaConsulta
+                console.log("Lista vazia")
+            }
         }
     )
 }
@@ -183,22 +277,22 @@ function modalPacienteOpen() {
         .classList.add("active");
     getPacientes();
 }
+
 function modalPacienteClose() {
     document.querySelector("#paciente")
         .classList.remove("active")
 }
 
-function modalAgenda() {
+function modalAgendaOpen() {
     document.querySelector("#agenda")
-        .classList.toggle("active")
+        .classList.add("active");
+    getConsultaPacientes();
+    getConsultaDentistas();
 }
 
-function consultasave(event) {
-    event.preventDefault();
-    console.log(id_dentista.value)
-    console.log(id_paciente.value)
-    console.log(data.value)
-    console.log(horario.value)
+function modalAgendaClose() {
+    document.querySelector("#agenda")
+        .classList.remove("active")
 }
 
 function salvarDentista() {
@@ -226,7 +320,7 @@ function salvarDentista() {
         }
     }
 
-    fetch('http://localhost:8080/dentista', requestOptions).then(
+    fetch(url + '/dentista', requestOptions).then(
         (response) => {
             if (response.ok) {
                 console.log("Dentista cadastrado")
@@ -264,7 +358,7 @@ function salvarPaciente() {
         }
     }
 
-    fetch('http://localhost:8080/paciente', requestOptions).then(
+    fetch(url + '/paciente', requestOptions).then(
         (response) => {
             if (response.ok) {
                 console.log("Paciente cadastrado")
@@ -276,17 +370,51 @@ function salvarPaciente() {
     )
 }
 
-function salvarConsultar() {
+function salvarConsultar(event) {
+    event.preventDefault()
+    let consulta = {
+        dentista: { id: consulta_dentista.value },
+        paciente: { id: consulta_paciente.value },
+        dataConsulta: data.value,
+        horaConsulta: horario.value + ":00"
+    }
 
-    console.log(rg.value)
+    const requestOptions = {
+        method: 'POST',
+        body: JSON.stringify(consulta),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    fetch(url + '/consulta', requestOptions).then(
+        (response) => {
+            if (response.ok) {
+                console.log("consulta cadastrado")
+            } else {
+                console.log("Erro ao cadastrar consulta")
+            }
+        }
+    )
 }
 
-// window.addEventListener('load', () => {
-//     getDentistas();
-// })
-
-let testeId = 0
-
-function getTestId(testeId) {
-    console.log(testeId)
+function statusConsulta(idConsulta) {
+    document.querySelector("section>#status")
+        .classList.toggle("statusOff");
+    document.querySelector("section>#conteiner")
+        .classList.toggle("conteinerOff");
+    console.log(idConsulta)
 }
+
+function formatDate(data) {
+    let ArrData = data.replaceAll("-", "")
+    let mes = ArrData.slice(4, 6)
+    let ano = ArrData.slice(0, 4)
+    let dia = ArrData.slice(6, 8)
+    let dataFormatada = `${dia}/${mes}/${ano}`
+    return dataFormatada
+}
+
+window.addEventListener('load', () => {
+    getConsulta();
+})
