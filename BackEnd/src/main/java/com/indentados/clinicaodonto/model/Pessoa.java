@@ -22,6 +22,7 @@ public abstract class Pessoa {
 
     @Column
     protected String nome;
+
     @Column
     protected String sobrenome;
 
@@ -33,4 +34,8 @@ public abstract class Pessoa {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_endereco")
     protected Endereco endereco;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_usuario")
+    protected Usuario usuario;
 }
