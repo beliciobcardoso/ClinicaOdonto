@@ -3,15 +3,13 @@ package com.indentados.clinicaodonto.DTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.indentados.clinicaodonto.model.Consulta;
 import com.indentados.clinicaodonto.model.Dentista;
-import com.indentados.clinicaodonto.model.Paciente;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.*;
 
 @Getter
 @Setter
@@ -21,16 +19,25 @@ import java.sql.Timestamp;
 
 public class ConsultaDTO {
 
-    private Date dataConsulta;
+    private LocalDateTime dataHoraConsulta;
 
-    private Time horaConsulta;
+    private LocalDate dataConsulta;
+
+    private LocalTime horaConsulta;
 
     private Dentista dentista;
 
+    public void setDataHoraConsulta(Timestamp dataHoraConsulta) {
+        this.dataHoraConsulta = Instant.ofEpochMilli(dataHoraConsulta.getTime()).atZone(ZoneId.of("UTC-03:00")).toLocalDateTime();
+
+        this.dataConsulta = this.dataHoraConsulta.toLocalDate();
+        this.horaConsulta = this.dataHoraConsulta.toLocalTime();
+    }
+
     //e cadê as infos do paciente?
     public ConsultaDTO(Consulta consulta){
-        this.dataConsulta = consulta.getDataConsulta();
-        this.horaConsulta = consulta.getHoraConsulta();
+        this.dataConsulta = consulta.getDataHoraConsulta().toLocalDateTime().toLocalDate();
+        this.horaConsulta = consulta.getDataHoraConsulta().toLocalDateTime().toLocalTime();
         this.dentista = consulta.getDentista();
     }
 }

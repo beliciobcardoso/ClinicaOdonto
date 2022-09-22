@@ -1,14 +1,13 @@
 package com.indentados.clinicaodonto.model;
 
-import java.sql.Date;
-import java.sql.Time;
-
-import javax.persistence.*;
+import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -22,17 +21,15 @@ public class Consulta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "data")
-    private Date dataConsulta;
 
-    @Column(name = "hora")
-    private Time horaConsulta;
+    @Column(name = "data_hora_consulta")
+    private Timestamp dataHoraConsulta;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "id_paciente", referencedColumnName = "id")
     private Paciente paciente;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "id_dentista", referencedColumnName = "id")
     private Dentista dentista;
 
