@@ -34,7 +34,7 @@ public class PacienteController {
         return new ResponseEntity(pacienteList,HttpStatus.OK);
     }
 
-    @RequestMapping(value = "filtrarPaciente", method = RequestMethod.GET)
+    @RequestMapping(value = "/filtrarPaciente", method = RequestMethod.GET)
     public ResponseEntity buscarTodosDTO(){
         List<PacienteDTO> pacienteDTOList = service.buscarTodosDTO();
 
@@ -45,19 +45,19 @@ public class PacienteController {
     }
 
 
-    @RequestMapping(value = "/buscaId", method = RequestMethod.GET)
-    public ResponseEntity buscarPorId(@RequestParam("id") Long id){
-
-        Optional<Paciente> pacienteOptional = service.buscarPorId(id);
-
-        if(pacienteOptional.isEmpty()){
-            return new ResponseEntity("Paciente não encontrado", HttpStatus.NOT_FOUND);
-        }
-
-        Paciente paciente = pacienteOptional.get();
-
-        return new ResponseEntity(paciente, HttpStatus.OK);
-    }
+//    @RequestMapping(value = "/buscaId", method = RequestMethod.GET)
+//    public ResponseEntity buscarPorId(@RequestParam("id") Long id){
+//
+//        Optional<Paciente> pacienteOptional = service.buscarPorId(id);
+//
+//        if(pacienteOptional.isEmpty()){
+//            return new ResponseEntity("Paciente não encontrado", HttpStatus.NOT_FOUND);
+//        }
+//
+//        Paciente paciente = pacienteOptional.get();
+//
+//        return new ResponseEntity(paciente, HttpStatus.OK);
+//    }
 
 
 
