@@ -2,19 +2,22 @@ package com.indentados.clinicaodonto.service;
 
 import com.indentados.clinicaodonto.model.Usuario;
 import com.indentados.clinicaodonto.repository.UsuarioRepository;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class UsuarioService {
-    final static Logger logger = Logger.getLogger(UsuarioService.class);
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     @Autowired
     UsuarioRepository repository;
 
     public Usuario salvar(Usuario usuario){
+
+        usuario.setPassword(encoder.encode(usuario.getPassword()));
+
         return repository.save(usuario);
     }
     public List<Usuario> buscarTodos(){
