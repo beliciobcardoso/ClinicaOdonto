@@ -19,13 +19,12 @@ class EnderecoServiceTest
 	@Autowired
 	EnderecoService enderecoService;
 	static Endereco e;
-	
+
 	@BeforeEach
 	void fazAntes()
 	{
 		e = new Endereco(null, "logradouro", "numero", "complemento", "bairro", "cidade", "estado", "cep");
 	}
-	
 	@Test
 	void testSalvar()
 	{

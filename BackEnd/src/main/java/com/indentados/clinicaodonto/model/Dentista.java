@@ -24,7 +24,7 @@ public class Dentista extends Pessoa{
     private String matricula;
 
     public Dentista( String nome, String sobrenome, String email, Endereco endereco, String matricula) {
-        super(null, nome, sobrenome, email, Timestamp.valueOf(LocalDateTime.now()), endereco);
+        super(null, nome, sobrenome, email, Timestamp.valueOf(LocalDateTime.now()), endereco,null);
         this.matricula = matricula;
     }
 

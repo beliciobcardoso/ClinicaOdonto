@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin( "*" )
 public class UsuarioController {
 
+
     @Autowired
     UsuarioService service;
 
     @PostMapping
     public ResponseEntity salvar(@RequestBody Usuario usuario){
+
         return new ResponseEntity(service.salvar(usuario), HttpStatus.OK);
     }
 
