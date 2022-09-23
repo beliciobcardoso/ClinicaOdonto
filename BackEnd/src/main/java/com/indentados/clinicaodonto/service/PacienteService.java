@@ -4,8 +4,8 @@ import com.indentados.clinicaodonto.DTO.PacienteDTO;
 import com.indentados.clinicaodonto.exception.ResourceNotFoundException;
 import com.indentados.clinicaodonto.model.Paciente;
 import com.indentados.clinicaodonto.repository.PacienteRepository;
-import org.hibernate.ResourceClosedException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,10 +16,15 @@ import java.util.Optional;
 
 public class PacienteService {
 
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
     @Autowired
     PacienteRepository repository;
 
     public Paciente salvar(Paciente paciente){
+
+        paciente.getUsuario().setPassword(encoder.encode(paciente.getUsuario().getPassword()));
+
         return repository.save(paciente);
     }
 
