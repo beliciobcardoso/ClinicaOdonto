@@ -5,6 +5,7 @@ import com.indentados.clinicaodonto.DTO.PacienteDTO;
 import com.indentados.clinicaodonto.exception.ResourceNotFoundException;
 import com.indentados.clinicaodonto.model.Paciente;
 import com.indentados.clinicaodonto.service.PacienteService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +22,11 @@ public class PacienteController {
     @Autowired
     PacienteService service;
 
+    final static Logger logger = Logger.getLogger(PacienteController.class);
+
     @PostMapping
     public ResponseEntity salvarPaciente(@RequestBody Paciente paciente){
+        logger.info(" Salvando paciente. ");
         Paciente pacienteSalvo = service.salvar(paciente);
         return new ResponseEntity(pacienteSalvo, HttpStatus.OK);
     }
@@ -30,12 +34,14 @@ public class PacienteController {
 
     @GetMapping
     public ResponseEntity  buscarTodos(){
+        logger.info(" Buscando pacientes. ");
         List<Paciente> pacienteList = service.buscarTodos();
         return new ResponseEntity(pacienteList,HttpStatus.OK);
     }
 
     @RequestMapping(value = "/filtrarPaciente", method = RequestMethod.GET)
     public ResponseEntity buscarTodosDTO(){
+        logger.info(" Buscando pacientes. ");
         List<PacienteDTO> pacienteDTOList = service.buscarTodosDTO();
 
         if(pacienteDTOList.isEmpty()){
@@ -63,6 +69,7 @@ public class PacienteController {
 
     @RequestMapping(value = "/buscaIdDTO", method = RequestMethod.GET)
     public ResponseEntity buscarPorIdDTO(@RequestParam("id") Long id){
+        logger.info(" Buscando paciente por ID. ");
         ObjectMapper mapper = new ObjectMapper();
 
         Optional<Paciente> pacienteOptional = service.buscarPorId(id);
@@ -86,6 +93,7 @@ public class PacienteController {
         if(paciente.getId() == null){
             return new ResponseEntity("Paciente não encontrado", HttpStatus.NOT_FOUND);
         }
+        logger.info(" Atualizando dados do paciente. ");
         Paciente pacienteAtualizado = service.atualizar(paciente);
         return new ResponseEntity(pacienteAtualizado,HttpStatus.OK);
 
@@ -95,6 +103,7 @@ public class PacienteController {
     public ResponseEntity excluir(@RequestParam("id")Long id) throws ResourceNotFoundException {
 
         try {
+            logger.info(" Excluindo paciente. ");
             service.excluir(id);
             return new ResponseEntity("Paciente excluído com sucesso", HttpStatus.OK);
 
