@@ -13,10 +13,10 @@ import java.util.Date;
 @Service
 public class TokenService {
 
-    @Value("${ecommerce.jwt.expiration}")
+    @Value("${clinicaodonto.jwt.expiration}")
     private String expiration;
 
-    @Value("${ecommerce.jwt.secret}")
+    @Value("${clinicaodonto.jwt.secret}")
     private  String secret;
 
     public String gerarToken(Authentication authentication){
