@@ -1,12 +1,13 @@
 package com.indentados.clinicaodonto.service;
 
-import com.indentados.clinicaodonto.DTO.ConsultaDTO;
+
 import com.indentados.clinicaodonto.DTO.DentistaDTO;
 import com.indentados.clinicaodonto.exception.ResourceNotFoundException;
-import com.indentados.clinicaodonto.model.Consulta;
 import com.indentados.clinicaodonto.model.Dentista;
+import com.indentados.clinicaodonto.model.Usuario;
 import com.indentados.clinicaodonto.repository.DentistaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,11 +16,18 @@ import java.util.Optional;
 
 @Service
 public class DentistaService {
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     @Autowired
     DentistaRepository dentistaRepository;
 
     public Dentista salvar(Dentista dentista){
+        String senha = dentista.getUsuario().getPassword();
+
+        String senhaEncoder = encoder.encode(senha);
+        //Dever de casa para Patricia e Rosana
+        //dentista.getUsuario().setPassword(senhaEncoder);
+
         return dentistaRepository.save(dentista);
     }
 
