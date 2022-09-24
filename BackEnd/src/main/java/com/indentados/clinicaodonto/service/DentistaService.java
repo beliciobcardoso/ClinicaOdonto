@@ -47,7 +47,8 @@ public class DentistaService {
     }
 
     public Dentista atualizar(Dentista dentista){
-        //corrigir update: colocar verificação antes de "salvar"
+        dentista.getUsuario().setPassword(encoder.encode(dentista.getUsuario().getPassword()));
+
         return dentistaRepository.save(dentista);
     }
 
