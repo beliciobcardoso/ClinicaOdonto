@@ -48,10 +48,11 @@ public class CreateUserAndRolesRun implements ApplicationRunner {
         user.setPassword(encoder.encode("123456"));
         user.setRoles(perfilListUser);
 
-        logger.info("Pegando a lista de usuarios");
-        List<Usuario> usuarios = usuarioRepository.findAll();
+        logger.info("Pegando o tamanho da lista Usuarios");
+        long sizeList = usuarioRepository.count();
+        logger.info("A lista Usuarios é: " + sizeList);
 
-        if (usuarios.isEmpty()){
+        if (sizeList == 0){
             logger.info("Criando os usuarios " + admin.getUsername() + " e " + user.getUsername());
             usuarioRepository.save(admin);
             usuarioRepository.save(user);
