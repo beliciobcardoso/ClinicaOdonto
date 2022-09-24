@@ -1,6 +1,5 @@
 package com.indentados.clinicaodonto.controller;
 
-import com.indentados.clinicaodonto.exception.ResourceNotFoundException;
 import com.indentados.clinicaodonto.model.Usuario;
 import com.indentados.clinicaodonto.service.UsuarioService;
 import org.apache.log4j.Logger;

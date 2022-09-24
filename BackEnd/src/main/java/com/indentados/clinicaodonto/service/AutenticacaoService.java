@@ -1,6 +1,5 @@
 package com.indentados.clinicaodonto.service;
 
-import ch.qos.logback.core.joran.conditional.IfAction;
 import com.indentados.clinicaodonto.model.Usuario;
 import com.indentados.clinicaodonto.repository.UsuarioRepository;
 import org.apache.log4j.Logger;
