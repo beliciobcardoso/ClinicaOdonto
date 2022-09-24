@@ -1,11 +1,9 @@
 package com.indentados.clinicaodonto.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.indentados.clinicaodonto.DTO.ConsultaDTO;
 import com.indentados.clinicaodonto.DTO.DentistaDTO;
 import com.indentados.clinicaodonto.exception.ResourceNotFoundException;
 import com.indentados.clinicaodonto.model.Dentista;
-import com.indentados.clinicaodonto.model.Pessoa;
 import com.indentados.clinicaodonto.service.DentistaService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

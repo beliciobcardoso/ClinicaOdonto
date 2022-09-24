@@ -2,6 +2,7 @@ package com.indentados.clinicaodonto.config.security;
 
 import com.indentados.clinicaodonto.model.Usuario;
 import com.indentados.clinicaodonto.repository.UsuarioRepository;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,6 +17,7 @@ import java.io.IOException;
 
 @Component
 public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
+    Logger logger = Logger.getLogger(AutenticacaoViaTokenFilter.class);
 
     @Autowired
     TokenService tokenService;
@@ -40,7 +42,7 @@ public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 
     private void autenticarUsuario(String token) {
         String username = tokenService.getUsernameUsuario(token);
-        System.out.println("Usuario logado: "+username);
+        logger.info("Usuario " + username+" logado!");
         Usuario usuario = usuarioRepository.findByUsername(username);
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(usuario,null,usuario.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);

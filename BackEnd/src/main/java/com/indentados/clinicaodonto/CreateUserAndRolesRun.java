@@ -3,6 +3,7 @@ package com.indentados.clinicaodonto;
 import com.indentados.clinicaodonto.model.Perfil;
 import com.indentados.clinicaodonto.model.Usuario;
 import com.indentados.clinicaodonto.repository.UsuarioRepository;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -14,6 +15,8 @@ import java.util.List;
 
 @Configuration
 public class CreateUserAndRolesRun implements ApplicationRunner {
+
+    static Logger logger = Logger.getLogger(CreateUserAndRolesRun.class);
 
     @Autowired
     UsuarioRepository usuarioRepository;
@@ -45,11 +48,11 @@ public class CreateUserAndRolesRun implements ApplicationRunner {
         user.setPassword(encoder.encode("123456"));
         user.setRoles(perfilListUser);
 
-        System.out.println("Pegando a lista de usuarios");
+        logger.info("Pegando a lista de usuarios");
         List<Usuario> usuarios = usuarioRepository.findAll();
-        System.out.println("Lista de usuarios" + usuarios);
 
         if (usuarios.isEmpty()){
+            logger.info("Criando os usuarios " + admin.getUsername() + " e " + user.getUsername());
             usuarioRepository.save(admin);
             usuarioRepository.save(user);
         }

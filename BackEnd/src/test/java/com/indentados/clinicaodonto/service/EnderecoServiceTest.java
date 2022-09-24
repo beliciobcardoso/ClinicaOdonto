@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class EnderecoServiceTest
 {
 	@Autowired
-	EnderecoService enderecoService;
+    EnderecoService enderecoService;
 	static Endereco e;
 
 	@BeforeEach

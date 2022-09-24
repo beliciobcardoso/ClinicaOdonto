@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class DentistaServiceTest
 {
 	@Autowired
-	DentistaService dentistaService;
+    DentistaService dentistaService;
 	static Dentista d;
 
 	@BeforeEach

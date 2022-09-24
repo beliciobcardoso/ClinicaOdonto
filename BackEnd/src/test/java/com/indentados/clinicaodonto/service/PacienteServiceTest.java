@@ -26,7 +26,7 @@ class PacienteServiceTest
 	final static Logger logger = Logger.getLogger(PacienteServiceTest.class);
 
 	@Autowired
-	PacienteService service;
+    PacienteService service;
 	static Paciente paciente = new Paciente();
 
 	@BeforeEach

@@ -3,6 +3,8 @@ package com.indentados.clinicaodonto.controller;
 import com.indentados.clinicaodonto.DTO.TokenDTO;
 import com.indentados.clinicaodonto.DTO.UsuarioDTO;
 import com.indentados.clinicaodonto.config.security.TokenService;
+import com.indentados.clinicaodonto.exception.ResourceNotFoundException;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
+    final static Logger logger = Logger.getLogger(AuthController.class);
     @Autowired
     private AuthenticationManager authManager;
 
@@ -27,7 +30,7 @@ public class AuthController {
     private TokenService tokenService;
 
     @PostMapping
-    public ResponseEntity autenticar(@RequestBody @Valid UsuarioDTO usuarioDTO){
+    public ResponseEntity autenticar(@RequestBody @Valid UsuarioDTO usuarioDTO) throws ResourceNotFoundException {
 
         try {
             UsernamePasswordAuthenticationToken loginUsuario = usuarioDTO.converter();
@@ -42,7 +45,9 @@ public class AuthController {
 
             return new ResponseEntity(tokenDTO, HttpStatus.OK);
         }catch (AuthenticationException exception){
+            logger.info("Erro ao autenticar");
             return new ResponseEntity("Erro ao autenticar",HttpStatus.BAD_REQUEST);
+
         }
 
     }
