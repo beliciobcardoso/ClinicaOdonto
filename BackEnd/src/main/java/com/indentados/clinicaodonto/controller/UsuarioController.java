@@ -1,5 +1,6 @@
 package com.indentados.clinicaodonto.controller;
 
+import com.indentados.clinicaodonto.exception.ResourceNotFoundException;
 import com.indentados.clinicaodonto.model.Usuario;
 import com.indentados.clinicaodonto.service.UsuarioService;
 import org.apache.log4j.Logger;
@@ -17,23 +18,23 @@ public class UsuarioController {
 final static Logger logger = Logger.getLogger(UsuarioController.class);
 
     @Autowired
-    UsuarioService service;
+    UsuarioService usuarioService;
 
     @PostMapping
     public ResponseEntity salvar(@RequestBody Usuario usuario) {
 
-        return new ResponseEntity(service.salvar(usuario), HttpStatus.OK);
+        return new ResponseEntity(usuarioService.salvar(usuario), HttpStatus.OK);
     }
 
     @GetMapping
     public ResponseEntity buscarTodoso(){
 
-        return  new ResponseEntity(service.buscarTodos(), HttpStatus.OK);
+        return  new ResponseEntity(usuarioService.buscarTodos(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/buscaId", method = RequestMethod.GET)
     public ResponseEntity buscarById(@RequestParam("id") Long id){
-        Optional<Usuario> usuarioOptional = service.buscarById(id);
+        Optional<Usuario> usuarioOptional = usuarioService.buscarById(id);
 
         if (usuarioOptional.isEmpty()){
             return new ResponseEntity("Usuario não encontrado", HttpStatus.NOT_FOUND);
@@ -45,13 +46,19 @@ final static Logger logger = Logger.getLogger(UsuarioController.class);
     @PatchMapping
     public ResponseEntity alterar(@RequestBody Usuario usuario){
         logger.info("Recebendo dp Body " + usuario.getUsername() + " " + usuario.getPassword());
-        service.alterar(usuario);
+        usuarioService.alterar(usuario);
         return  new ResponseEntity("O Usuario foi alterado com Sucesso!!!!!!", HttpStatus.OK);
     }
     @DeleteMapping
-    public ResponseEntity delete(@RequestParam("id") Long id){
-        service.delete(id);
-        return new ResponseEntity("O Usuario foi excluído com Sucesso!!!!!!",HttpStatus.OK);
+    public ResponseEntity delete(@RequestParam("id") Long id) throws ResourceNotFoundException {
+
+        try {
+        usuarioService.delete(id);
+        return new ResponseEntity("O Usuario foi deletado com Sucesso!!!!!!",HttpStatus.OK);
+
+        }catch (ResourceNotFoundException e){
+            return new ResponseEntity("Usuario não deletado, Usuario não existe.",HttpStatus.NOT_FOUND);
+        }
     }
 
 
