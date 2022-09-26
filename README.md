@@ -27,7 +27,7 @@ dados dos dentistas como: registro de nome, sobrenome, matrícula, endereço.</b
 - Camada de apresentação: estas são as telas da Web que teremos que  desenvolver usando o Framework Spring Boot MVC com os controladores e uma dessas duas
 opções:HTML +JavaScript ou React para a visualização;
 
-# Avanços
+# Avanços ⚡ 👨🏾‍🎓
 - O trabalho contou com a metodologia ágil Kanban, para organização das Sprints da equipe, e seus respectivos trabalhos, e organização das tarefas  em ToDo, Doing e Done de modo que que a equipe pôde trabalhar de forma produtiva, condizente, bem produtiva e organizada.
 
 
