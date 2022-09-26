@@ -59,6 +59,7 @@ e a  integração com a camada de apresentação, ou seja, as telas HTML por mei
 
 Foi adicionado um login do Spring Securuty no projeto bem como a substuição
 dos DAOs pelos repositorys
+- Foi Concluido os testes de usuario para salvar, alterar e login no cadastro
 
 
 
