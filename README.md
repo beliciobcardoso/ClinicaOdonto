@@ -2,7 +2,7 @@
 # ClinicaOdonto
 
 Projeto do trabalho integrador de backend 1 da Digital House
-<h1 align="center">Integrantes: Ana Carolina, Patrícia, Belicio, Rosana, Teteu e Lucas Bernardo</h1>
+<h1 align="center">Integrantes: Ana Carolina, Patrícia, Belicio, Rosana, Vitor Mateus e Lucas Bernardo</h1>
 - Nele foi possível criar um método CRUD que interligasse os serviços de FrontEnd que fizesse a administração de dados odontológicos, onde foi possível adicionar e modificar os
 dados dos dentistas, registro de nome, sobrenome, matrícula, endereço e registro cadastrais como um todo.
 - Administração de pacientes: Nele é possivel registrar, mofificar, excluir e inclui pacientes novos, bem como os seus dados armazenados:(RG,CPF,Endereço, data de alta(procedimento
