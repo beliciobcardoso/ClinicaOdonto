@@ -27,7 +27,7 @@ final static Logger logger = Logger.getLogger(UsuarioController.class);
     }
 
     @GetMapping
-    public ResponseEntity buscarTodoso(){
+    public ResponseEntity buscarTodos(){
 
         return  new ResponseEntity(usuarioService.buscarTodos(), HttpStatus.OK);
     }
