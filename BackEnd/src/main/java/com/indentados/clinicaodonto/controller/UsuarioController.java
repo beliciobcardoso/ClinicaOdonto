@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -27,9 +28,14 @@ final static Logger logger = Logger.getLogger(UsuarioController.class);
     }
 
     @GetMapping
-    public ResponseEntity buscarTodos(){
+    public ResponseEntity buscarTodosUsuarios(){
+        List<Usuario> usuarioList = usuarioService.buscarTodos();
 
-        return  new ResponseEntity(usuarioService.buscarTodos(), HttpStatus.OK);
+        if(usuarioList.isEmpty()){
+            return new ResponseEntity("Nenhum Usuario encontrado!",HttpStatus.NOT_FOUND);
+        }
+
+        return  new ResponseEntity(usuarioList, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/buscaId", method = RequestMethod.GET)
