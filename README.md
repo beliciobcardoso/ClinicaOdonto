@@ -1,5 +1,5 @@
 
-# Clinica Odonto
+# Clinica Odonto 🏥
 
 Projeto do trabalho integrador de backend 1 da Digital House
 <h1 align="center">Integrantes: Ana Carolina, Belício, Lucas Bernardo, Patrícia, Rosana, Vitor Mateus</h1>
@@ -18,7 +18,7 @@ dados dos dentistas como: registro de nome, sobrenome, matrícula, endereço.</b
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMP0wZTwhLady0zN98r0q-ssaG8n8C_tIoqmyUVE7w&s"  alt="Microsoft-Integration-Azure-Stencils-Pack" style="max-width: 100%; height: 100%">
 
 
-# Requisitos Técnicos
+# Requisitos Técnicos 📋
 
 - Camada de entidade de negócios: são as classes Java do nosso negócio modeladas por meio do paradigma orientado a objetos;
 - Camada de acesso a dados(Repositório): são as classes que se encarregam de acessar o banco de dados;
