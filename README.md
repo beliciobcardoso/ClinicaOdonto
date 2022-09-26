@@ -2,7 +2,8 @@
 # Clinica Odonto
 
 Projeto do trabalho integrador de backend 1 da Digital House
-<h1 align="center">Integrantes: Ana Carolina, Patrícia, Belicio, Rosana, Vitor Mateus e Lucas Bernardo</h1>
+<h1 align="center">Integrantes: Ana Carolina, Belício, Lucas Bernardo, Patrícia, Rosana, Vitor Mateus</h1>
+
 - Nele, estão implementados os métodos CRUD, interligados aos serviços de FrontEnd.</br>
 - Permite a administração de dados odontológicos, onde é possível adicionar e modificar os
 dados dos dentistas como: registro de nome, sobrenome, matrícula, endereço.</br>
@@ -11,14 +12,13 @@ dados dos dentistas como: registro de nome, sobrenome, matrícula, endereço.</b
 [comment]: # (temos mesmo data de alta?)
 - Possibilidade de login do usuário, sendo ele paciente ou dentista. </br>
 
-[comment]: # (- Nele é possível o paciente fazer o Login em seu sistema de acesso (entrada, saída)
+[comment]: # (Nele é possível o paciente fazer o Login em seu sistema de acesso [entrada, saída])
 - Adminitração de sistema de sistema de consulta: é possível que um paciente marque uma consulta com um dentista em um horário e data específicados, desde que estejam na agenda do dentista.</br>
 
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMP0wZTwhLady0zN98r0q-ssaG8n8C_tIoqmyUVE7w&s"  alt="Microsoft-Integration-Azure-Stencils-Pack" style="max-width: 100%; height: 100%">
 
 
 # Requisitos Técnicos
-
 
 - Camada de entidade de negócios: são as classes Java do nosso negócio modeladas por meio do paradigma orientado a objetos;
 - Camada de acesso a dados(Repositório): são as classes que se encarregam de acessar o banco de dados;
