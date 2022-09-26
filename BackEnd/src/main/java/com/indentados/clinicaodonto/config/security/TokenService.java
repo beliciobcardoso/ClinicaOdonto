@@ -4,6 +4,7 @@ import com.indentados.clinicaodonto.model.Usuario;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import java.util.Date;
 
 @Service
 public class TokenService {
+    final static Logger logger = Logger.getLogger(TokenService.class);
 
     @Value("${clinicaodonto.jwt.expiration}")
     private String expiration;
@@ -23,7 +25,7 @@ public class TokenService {
         Usuario usuarioLogado = (Usuario) authentication.getPrincipal();
 
         Date dataHoje = new Date();
-        Date dataExpiracao = new Date(dataHoje.getTime() + Long.parseLong(expiration));
+        Date dataExpiracao = new Date(dataHoje.getTime() + Long.parseLong(this.expiration));
         String token = Jwts.builder()
                 .setIssuer("Api Clinica Odonto")
                 .setSubject(usuarioLogado.getUsername())
@@ -37,7 +39,7 @@ public class TokenService {
 
     public boolean verficaToken(String token) {
         try{
-            System.out.println(token);
+            logger.info("Verificando o Token vindo Head Authorization: " + token);
             Jwts.parser().setSigningKey(this.secret).parseClaimsJws(token);
             return true;
         }catch(Exception exception){
