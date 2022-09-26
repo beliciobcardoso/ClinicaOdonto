@@ -6,8 +6,12 @@ Projeto do trabalho integrador de backend 1 da Digital House
 - Nele, estão implementados os métodos CRUD, interligados aos serviços de FrontEnd.</br>
 - Permite a administração de dados odontológicos, onde é possível adicionar e modificar os
 dados dos dentistas como: registro de nome, sobrenome, matrícula, endereço.</br>
-- Administração de pacientes: é possivel buscar, registrar, mofificar e excluir pacientes novos, bem como os seus dados armazenados: RG, CPF, Endereço, data de alta(procedimento cirurgico, registro e mercação de novas consultas)).</br> [//]: # temos mesmo data de alta?
-- Possibilidade de login do usuário, sendo ele paciente ou dentista.</br>    [//]: # - Nele é possível o paciente fazer o Login em seu sistema de acesso (entrada, saída);
+- Administração de pacientes: é possivel buscar, registrar, mofificar e excluir pacientes novos, bem como os seus dados armazenados: RG, CPF, Endereço, data de alta(procedimento cirurgico, registro e mercação de novas consultas). </br>   
+
+[comment]: # (temos mesmo data de alta?)
+- Possibilidade de login do usuário, sendo ele paciente ou dentista. </br>
+
+[comment]: # (- Nele é possível o paciente fazer o Login em seu sistema de acesso (entrada, saída)
 - Adminitração de sistema de sistema de consulta: é possível que um paciente marque uma consulta com um dentista em um horário e data específicados, desde que estejam na agenda do dentista.</br>
 
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMP0wZTwhLady0zN98r0q-ssaG8n8C_tIoqmyUVE7w&s"  alt="Microsoft-Integration-Azure-Stencils-Pack" style="max-width: 100%; height: 100%">
