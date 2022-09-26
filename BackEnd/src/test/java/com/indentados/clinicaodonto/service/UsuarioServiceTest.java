@@ -29,6 +29,7 @@ class UsuarioServiceTest {
 	UsuarioRepository usuarioRepository;
 
 	static Usuario usuario;
+	static Usuario usuario2;
 
 	@BeforeAll
 	static void doBefore(){
@@ -37,10 +38,20 @@ class UsuarioServiceTest {
 		List<Perfil> perfilListAdmin = new ArrayList<>();
 		perfilListAdmin.add(perfilAdmin);
 
+		Perfil perfilUser = new Perfil();
+		perfilUser.setRole("USER");
+		List<Perfil> perfilListUser = new ArrayList<>();
+		perfilListUser.add(perfilUser);
+
 		usuario = new Usuario();
 		usuario.setUsername("usertestadmin");
 		usuario.setPassword("123456");
 		usuario.setRoles(perfilListAdmin);
+
+		usuario2 = new Usuario();
+		usuario2.setUsername("usertest");
+		usuario2.setPassword("123456");
+		usuario2.setRoles(perfilListUser);
 	}
 
 	@Test
@@ -49,9 +60,23 @@ class UsuarioServiceTest {
 		usuarioTeste = usuarioService.salvar(usuario);
 		Assertions.assertNotNull(usuarioTeste.getId());
 	}
+	@Test
+	void login(){
+
+		String username = "usertest";
+		String password = "123456";
+
+		usuarioService.salvar(usuario2);
+
+		Usuario userReturnUsername = usuarioRepository.findByUsername(username);
+
+		boolean senhaMatche = encoder.matches(password,userReturnUsername.getPassword());
+
+		Assertions.assertTrue(senhaMatche);
+	}
 
 	@Test
-	void alterar(){
+	void alterarSenha(){
 
 		String password = "987654";
 		logger.info("Senha do front: "+password);
@@ -74,21 +99,6 @@ class UsuarioServiceTest {
 		logger.info("A senha do User alterado: " + userSenhaAlterada.getPassword());
 
 		boolean senhaMatche = encoder.matches(password,userSenhaAlterada.getPassword());
-
-		Assertions.assertTrue(senhaMatche);
-	}
-
-	@Test
-	void login(){
-
-		String username = "usertestadmin";
-		String password = "123456";
-
-		usuarioService.salvar(usuario);
-
-		Usuario userReturnUsername = usuarioRepository.findByUsername(username);
-
-		boolean senhaMatche = encoder.matches(password,userReturnUsername.getPassword());
 
 		Assertions.assertTrue(senhaMatche);
 	}
