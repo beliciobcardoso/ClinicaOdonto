@@ -74,21 +74,5 @@ class EnderecoServiceTest
 		}
 		
 	}
-	
-	@Test
-	void excluir() throws ResourceNotFoundException
-	{
-		e = enderecoService.salvar(e);
-		try
-		{
-			enderecoService.excluir(999L);
-		}
-		catch(ResourceNotFoundException e)
-		{
-			System.out.println("Endereco buscado não foi encontrado.");
-		}
-		
-		assertFalse(enderecoService.buscarPorId(e.getId()).isPresent());
-		
-	}
+
 }

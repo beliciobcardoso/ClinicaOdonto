@@ -28,7 +28,8 @@ class UsuarioServiceTest {
 	@Autowired
 	UsuarioRepository usuarioRepository;
 
-	static Usuario usuario;
+	static Usuario usuario = new Usuario();
+	static Usuario usuario2 = new Usuario();
 
 	@BeforeAll
 	static void doBefore(){
@@ -37,10 +38,22 @@ class UsuarioServiceTest {
 		List<Perfil> perfilListAdmin = new ArrayList<>();
 		perfilListAdmin.add(perfilAdmin);
 
+		Perfil perfilUser = new Perfil();
+		perfilUser.setRole("USER");
+		List<Perfil> perfilListUser = new ArrayList<>();
+		perfilListUser.add(perfilUser);
+
+
 		usuario = new Usuario();
 		usuario.setUsername("usertestadmin");
 		usuario.setPassword("123456");
 		usuario.setRoles(perfilListAdmin);
+
+		usuario2 = new Usuario();
+		usuario2.setUsername("usertest");
+		usuario2.setPassword("123456");
+		usuario2.setRoles(perfilListUser);
+
 	}
 
 	@Test
@@ -81,10 +94,10 @@ class UsuarioServiceTest {
 	@Test
 	void login(){
 
-		String username = "usertestadmin";
+		String username = "usertest";
 		String password = "123456";
 
-		usuarioService.salvar(usuario);
+		usuarioService.salvar(usuario2);
 
 		Usuario userReturnUsername = usuarioRepository.findByUsername(username);
 
