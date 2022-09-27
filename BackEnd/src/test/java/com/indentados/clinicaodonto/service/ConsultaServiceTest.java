@@ -80,7 +80,7 @@ class ConsultaServiceTest
 		logger.info("A data e o horário atual da consulta é: "+ consultaSalva.getDataHoraConsulta());
 
         Timestamp dataHoraConsulta = Timestamp.valueOf(LocalDateTime.of(2022,9,26,14,0));
-        //consultaSalva3 = consultaService.buscarPorId(1L).get();
+
         consultaSalva.setDataHoraConsulta(dataHoraConsulta);
 		consultaSalva.setDentista(new Dentista());
 		consultaSalva.setPaciente(new Paciente());
