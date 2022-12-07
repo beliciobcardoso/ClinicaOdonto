@@ -22,17 +22,5 @@ public class Dentista extends Pessoa{
 
     @Column
     private String matricula;
-
-    public Dentista( String nome, String sobrenome, String email, Endereco endereco, String matricula) {
-        super(null, nome, sobrenome, email, Timestamp.valueOf(LocalDateTime.now()), endereco,null);
-        this.matricula = matricula;
-    }
-
-    //    public Dentista(String nome, String sobre, Endereco endereco, String email, String matricula)
-//    {
-//        //Apenas para fins de teste. ignore --Teteu
-//        super(null, nome, sobre, endereco, email, Timestamp.valueOf(LocalDateTime.now()));
-//        this.matricula = matricula;
-//    }
     
 }

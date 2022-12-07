@@ -34,7 +34,12 @@ public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 
 
         if(valido == true){
+            logger.info("O token é valido!");
             autenticarUsuario(token);
+        }
+
+        if (valido == false){
+        logger.info("O token não é valido");
         }
 
         filterChain.doFilter(request,response);
@@ -42,7 +47,7 @@ public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 
     private void autenticarUsuario(String token) {
         String username = tokenService.getUsernameUsuario(token);
-        logger.info("Usuario " + username+" logado!");
+        logger.info("Usuario " + username+" logado e Autorizado!");
         Usuario usuario = usuarioRepository.findByUsername(username);
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(usuario,null,usuario.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
@@ -50,7 +55,7 @@ public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 
     private String recuperarToken(HttpServletRequest request) {
         String getToken = request.getHeader("Authorization");
-        if(getToken == null || getToken.isEmpty() || !getToken.startsWith("Bearer ")){
+        if(getToken == null || !getToken.startsWith("Bearer ")){
             return null;
         }
         return getToken.substring(7,getToken.length());

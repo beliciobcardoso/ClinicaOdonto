@@ -32,9 +32,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers(HttpMethod.POST,"/auth").permitAll()
-                .antMatchers("/usuario").hasAnyAuthority("ADMIN")
+                .antMatchers("/v3/api-docs/**", "/swagger-ui/**").permitAll()
+                .antMatchers(HttpMethod.POST,"/auth").permitAll() //done
+                .antMatchers("/usuario").hasAnyAuthority("ADMIN") //done
+                .antMatchers("/usuario/buscaId").hasAnyAuthority("ADMIN") //done
                 .antMatchers(HttpMethod.GET,"/dentista").hasAnyAuthority("ADMIN","USER")
                 .antMatchers(HttpMethod.GET,"/paciente").permitAll()
                 .antMatchers(HttpMethod.GET,"/endereco").permitAll()
@@ -42,7 +43,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().addFilterBefore(autenticacaoViaTokenFilter, UsernamePasswordAuthenticationFilter.class);
-                ;
     }
 
     @Override

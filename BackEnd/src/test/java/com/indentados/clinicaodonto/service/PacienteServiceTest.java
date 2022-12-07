@@ -4,6 +4,8 @@ package com.indentados.clinicaodonto.service;
 import com.indentados.clinicaodonto.exception.ResourceNotFoundException;
 import com.indentados.clinicaodonto.model.Endereco;
 import com.indentados.clinicaodonto.model.Paciente;
+import com.indentados.clinicaodonto.model.Perfil;
+import com.indentados.clinicaodonto.model.Usuario;
 import org.apache.log4j.Logger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +34,12 @@ class PacienteServiceTest
 
 	@BeforeEach
 	void doBefore(){
+
+		Perfil perfilUser = new Perfil();
+		perfilUser.setRole("USER");
+		List<Perfil> perfilListUser = new ArrayList<>();
+		perfilListUser.add(perfilUser);
+
 		//paciente.setId(null);
 		paciente.setNome("Lucas");
 		paciente.setSobrenome("Bernardo");
@@ -39,7 +48,7 @@ class PacienteServiceTest
 				"Fortaleza", "Ceará", "60000-500"));
 		paciente.setEmail("lucas@email.com");
 		paciente.setRg("500333565656555");
-		//paciente.setUsuario(new Usuario(null,"teste1","123456","USER");
+		paciente.setUsuario(new Usuario(null,"teste1","123456",perfilListUser));
 	}
 
 	@Test
@@ -70,13 +79,18 @@ class PacienteServiceTest
 
 		logger.info("Criando paciente 2");
 
+		Perfil perfilUser = new Perfil();
+		perfilUser.setRole("USER");
+		List<Perfil> perfilListUser = new ArrayList<>();
+		perfilListUser.add(perfilUser);
+
 		Paciente paciente2 = new Paciente();
 		paciente2.setNome("Luke");
 		paciente2.setSobrenome("Skywalker");
 		paciente2.setEmail("jedi@email.com");
 		paciente2.setEndereco(new Endereco());
 		paciente2.setRg("5777775757576666");
-		//paciente2.setUsuario(new Usuario(null,"jedi","123456","USER");
+		paciente2.setUsuario(new Usuario(null,"jedi","123456",perfilListUser));
 
 		logger.info("Salvando o paciente " + paciente2.getNome());
 		Paciente pacienteSalvo2 = service.salvar(paciente2);
