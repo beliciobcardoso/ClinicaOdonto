@@ -2,7 +2,7 @@
 # Clinica Odonto 🏥
 
 Projeto do trabalho integrador de backend 1 da Digital House
-<h1 align="center">Integrantes: Ana Carolina, Belício, Lucas Bernardo, Patrícia, Rosana, Vitor Mateus</h1>
+<h1 align="center">Integrantes: Ana Carolina, Belício, Lucas Bernardo, Patrícia, Erika, Vitor Mateus</h1>
 
 - Nele, estão implementados os métodos CRUD, interligados aos serviços de FrontEnd.</br>
 - Permite a administração de dados odontológicos, onde é possível adicionar e modificar os
